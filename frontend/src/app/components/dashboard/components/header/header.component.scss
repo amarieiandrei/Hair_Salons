@@ -1,0 +1,68 @@
+@import "../../../../../colors.scss";
+@import "../../../../../fonts.scss";
+@import "../../../../../properties.scss";
+
+.nav {
+  background-color: $bgColorDashboard;
+  color: #fff;
+  justify-content: space-around;
+  padding: 20px 0 20px 0;
+
+  .nav__item {
+    display: flex;
+
+    .item__link {
+      display: flex;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 20px;
+      border-radius: 0.25rem;
+      font-family: $poppins;
+
+      .link__img {
+        max-height: 22px;
+        max-width: 23.65px;
+        margin-right: 4px;
+      }
+
+      .link__content {
+        font-family: $montserrat;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+
+      &.signin {
+        margin-right: 4px;
+        font-weight: 500;
+      }
+      &.signin:hover {
+        border-radius: 0.25rem;
+        background-color: $hoverDashboard;
+      }
+
+      &.join {
+        border-radius: 0.25rem;
+        background-color: $btnDashboard;
+        color: #000;
+      }
+    }
+  }
+}
+
+// ! Responsive
+
+/* On screens that are 200px or less, set the background color to blue */
+@media screen and (max-width: 160px) {
+  .item__link {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+  }
+}
+
+/* On screens that are 200px or less, set the background color to blue */
+@media screen and (max-width: 210px) {
+  .item__link {
+    text-align: center;
+  }
+}

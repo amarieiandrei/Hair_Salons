@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- *ngIf="!showMap" -->
+    <div class="col">
+      <app-hair-salons [isHideMap]="isHideMap"></app-hair-salons>
+    </div>
+
+    <!-- <div *ngIf="showMap" class="col google-map-responsive">
+      <div class="google-map">
+        <app-google-map></app-google-map>
+      </div>
+    </div> -->
+
+    <div *ngIf="!isHideMap" class="col google-map-container">
+      <div class="google-map">
+        <app-google-map></app-google-map>
+      </div>
+    </div>
+  </div>
+</div>

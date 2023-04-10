@@ -1,0 +1,58 @@
+<div class="h-[70px] bg-[#181818] mt-[-10px]"></div>
+
+<div class="container-fluid">
+  <div class="download">
+    <span class="download__title">GET IT ON</span>
+    <button class="download__btn">
+      <span class="btn__text">App Store</span>
+      <fa-icon [icon]="faApple" size="xl"></fa-icon>
+    </button>
+    <button class="download__btn">
+      <span class="btn__text">Google Play</span>
+      <fa-icon [icon]="faGooglePlay" size="lg"></fa-icon>
+    </button>
+  </div>
+
+  <div class="nft-container-responsive">
+    <div class="nft-container">
+      <img
+        src="../../../../../assets/dashboard/VR Friend.png"
+        class="nft"
+        alt="VR Friend"
+      />
+      <img
+        src="../../../../../assets/dashboard/VR Panda.png"
+        class="nft"
+        alt="VR Panda"
+      />
+      <img
+        src="../../../../../assets/dashboard/VR Alien.png"
+        class="nft"
+        alt="VR Alien"
+      />
+    </div>
+  </div>
+
+  <div class="links-container-responsive">
+    <div class="links-container">
+      <div>
+        <a routerLink="" class="link-home">Home</a>
+        <ul class="link-list">
+          <li class="list__item">FAQ</li>
+          <li class="list__item">Blog</li>
+          <li class="list__item">Contact</li>
+        </ul>
+      </div>
+      <a routerLink="" class="link-signin">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<div class="h-[60px] bg-[#181818] mt-[-10px]"></div>
+
+<div class="footer">
+  <span class="footer__creator">&copy; 2023 Maliakademy</span>
+  <button (click)="goToTop()" class="footer__arrow">
+    <fa-icon [icon]="faArrowUp" size="2x" class="arrow-up"></fa-icon>
+  </button>
+</div>

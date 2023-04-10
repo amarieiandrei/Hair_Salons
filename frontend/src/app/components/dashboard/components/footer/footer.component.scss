@@ -1,0 +1,158 @@
+@import "../../../../../colors.scss";
+@import "../../../../../fonts.scss";
+@import "../../../../../properties.scss";
+
+* {
+  color: #fff;
+  font-family: $poppins;
+}
+
+.container-fluid {
+  background-color: $footerBgColor;
+  padding: 2vh 8vw;
+  box-sizing: content-box;
+  width: calc(100% - 16vw);
+  height: 30vh;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -10px;
+
+  .download {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+
+    .download__title {
+      font-family: $montserrat;
+      font-weight: bold;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .download__btn {
+      display: flex;
+      align-items: center;
+      place-content: center;
+      margin-bottom: 20px;
+      border-radius: $borderRadius;
+      background-color: $btnDashboard;
+      border: none;
+      padding: 0.8em 2.2em;
+      cursor: pointer;
+
+      .btn__text {
+        margin: auto 0;
+        margin-right: 5px;
+        font-size: 19px;
+        font-weight: 900;
+      }
+    }
+    .download__btn:hover {
+      transition-duration: 0.25s, 20s;
+      box-shadow: 5px 5px 5px #fff;
+    }
+  }
+
+  .nft-container-responsive {
+    margin: auto 0;
+
+    .nft-container {
+      display: flex;
+
+      .nft {
+        width: 105px;
+        height: 125px;
+        margin: 0 25px;
+      }
+    }
+  }
+
+  .links-container-responsive {
+    margin: auto 0;
+
+    .links-container {
+      display: flex;
+
+      .link-home {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 700;
+        margin-right: 100px;
+      }
+
+      .link-list {
+        list-style: none;
+        margin-left: -30px;
+        margin-top: 20px;
+
+        .list__item {
+          margin-bottom: 10px;
+        }
+      }
+
+      .link-signin {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vh 8vw;
+  box-sizing: content-box;
+  width: calc(100% - 16vw);
+  background-color: $bgColorDashboard;
+  margin-top: -10px;
+
+  .footer__creator {
+    color: $footerCreator;
+    margin: auto 0;
+  }
+
+  .footer__arrow {
+    margin-top: -25px;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    border: none;
+    background-color: $btnDashboard;
+    display: grid;
+    place-content: center;
+
+    .arrow-up {
+      font-size: 18px;
+      color: #000;
+    }
+    .arrow-up:hover {
+      transition: all 0.35s;
+      transform: translateY(-0.25rem);
+    }
+  }
+}
+
+// ! Responsive
+
+@media screen and (max-width: 1100px) {
+  .nft-container-responsive {
+    display: none;
+  }
+
+  .container-fluid {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .links-container-responsive {
+    display: none;
+  }
+
+  .download__title {
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,19 @@
+<div (mouseover)="showArrows()" (mouseleave)="hideArrows()" class="slider">
+  <div>
+    <div *ngIf="isArrows" class="leftArrow" (click)="goToPrevious()">&#60;</div>
+    <div *ngIf="isArrows" class="rightArrow" (click)="goToNext()">&#62;</div>
+  </div>
+  <div
+    class="slide"
+    [ngStyle]="{ 'background-image': getCurrentSlideUrl() }"
+  ></div>
+  <div class="dotsContainer">
+    <div
+      *ngFor="let slide of slides; let slideIndex = index"
+      class="dot"
+      (click)="goToSlide(slideIndex)"
+    >
+      &#8901;
+    </div>
+  </div>
+</div>

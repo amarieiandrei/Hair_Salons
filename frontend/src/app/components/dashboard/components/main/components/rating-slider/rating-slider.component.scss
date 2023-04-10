@@ -1,0 +1,10 @@
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.rating-container__value {
+  margin-right: 5px;
+  font-size: 1.5vw;
+  color: #ffb500;
+}

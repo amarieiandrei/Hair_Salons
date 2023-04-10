@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <ul class="nav section">
+    <div class="section__container">
+      <a class="search-btn">
+        <fa-icon [icon]="faMagnifyingGlass" class="search-glass"></fa-icon>
+        <div>
+          <p class="search-btn__header">Hairdressers and Hair Salons</p>
+          <div class="search-btn__footer">
+            <p class="footer__text">in Romania</p>
+            <fa-icon [icon]="faCircle" class="fa-circle"></fa-icon>
+            <p class="footer__text">Any Date</p>
+          </div>
+        </div>
+      </a>
+      <div class="container__blur">
+        <p class="content">Hairdressers and hair salons</p>
+      </div>
+    </div>
+
+    <button
+      (click)="showMap(); msgToMain()"
+      class="section__map-btn"
+      id="section__map-btn"
+    >
+      <div class="map-btn__container">
+        <fa-icon [icon]="faMap" class="container__icon"></fa-icon>
+        <p class="container__text">Map</p>
+      </div>
+    </button>
+
+    <button (click)="toogleMap(); msgToSib()" class="section__hidemap-btn">
+      <div class="hidemap-btn__container">
+        <fa-icon [icon]="mapBtnIcon" class="btn__map-icon"></fa-icon>
+        <p class="hide-map__text">{{ mapBtnText }}</p>
+      </div>
+    </button>
+  </ul>
+
+  <p class="container-fluid__title">Popular Treatments</p>
+
+  <ul class="nav nav-responsive">
+    <li *ngFor="let item of items">
+      <a class="mini-search-btn">
+        <fa-icon [icon]="faMagnifyingGlass" class="search-glass-mini"></fa-icon>
+        <span class="mini-search-btn__text">{{ item }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,39 @@
+@import "../../../../../../../colors.scss";
+@import "../../../../../../../fonts.scss";
+
+* {
+  padding-top: 2vh;
+  background-color: $bgColorDashboard;
+  color: #fff;
+  font-family: $poppins;
+}
+
+.google-map {
+  padding: 0;
+  position: sticky;
+  top: 35vh;
+}
+
+// ! Responsive
+
+@media screen and (max-width: 1000px) {
+  .google-map-container {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1413px) {
+  .google-map {
+    top: 32vh;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .google-map-responsive {
+    display: none;
+  }
+
+  // .google-map-container {
+  //   display: block;
+  // }
+}

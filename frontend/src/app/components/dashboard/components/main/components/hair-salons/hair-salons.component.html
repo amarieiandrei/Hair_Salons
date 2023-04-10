@@ -1,0 +1,40 @@
+<div
+  *ngFor="let card of cards"
+  class="hair-salon"
+  [ngClass]="isHideMap === false ? 'hair-salon' : 'hair-salon-custom'"
+>
+  <div class="hair-salon__header">
+    <div class="header__slides-container">
+      <app-image-slider [slides]="slides"></app-image-slider>
+    </div>
+
+    <div class="header__content">
+      <h5 class="content__header">Arta Beauty Clinic</h5>
+      <div class="content__container">
+        <app-rating-slider></app-rating-slider>
+        <div class="container__reviews">{{ reviews }} reviews</div>
+      </div>
+      <div class="content__container">
+        <div class="container__location">
+          {{ location }}
+        </div>
+        <div class="container__show-on-map">
+          <fa-icon [icon]="faMapLocationDot"></fa-icon> Show on map
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hair-salon__line"></div>
+
+  <div class="hair-salon__details">
+    <span class="details__text">{{ details }}</span>
+    <fa-icon
+      (click)="showDetails()"
+      [ngClass]="isDetails ? 'iconDetailsTop' : 'iconDetailsBottom'"
+      [icon]="faGreaterThan"
+    ></fa-icon>
+  </div>
+
+  <app-details *ngIf="isDetails"></app-details>
+</div>

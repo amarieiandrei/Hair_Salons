@@ -1,0 +1,4 @@
+<div class="rating-container">
+  <div class="rating-container__value">{{ value | number : "1.1" }}</div>
+  <rating [(ngModel)]="value" [max]="max" [readonly]="false"> </rating>
+</div>

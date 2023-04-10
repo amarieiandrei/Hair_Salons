@@ -1,0 +1,40 @@
+.details {
+  margin-top: 20px;
+  display: grid;
+  width: 70%;
+  color: #fff;
+}
+
+.details__day {
+  display: flex;
+  justify-content: space-between;
+}
+
+.day__container {
+  display: flex;
+  place-items: center;
+}
+
+.container__circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #3ba150;
+  margin-right: 10px;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.container__day {
+  color: #4d4d4d;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.day__date {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  font-size: 20px;
+}
