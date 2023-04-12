@@ -1,5 +1,8 @@
+@import "./colors.scss";
+
 // * Properties
 $borderRadius: 5.25px;
+$borderRadiusModal: 2.75px;
 
 // * Imports
 /* Importing TailWind css */
@@ -19,6 +22,9 @@ $borderRadius: 5.25px;
   font-size: 1.5vw;
 }
 
-// .svg-inline--fa.fa-greater-than {
-//     font-size: large;
-// }
+input:focus {
+  border: 1px solid $btnLogin;
+  box-shadow: 0 0 3px $btnLogin;
+  outline-offset: 0px;
+  outline: none;
+}

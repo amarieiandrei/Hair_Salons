@@ -1,0 +1,215 @@
+@import "../../../../../fonts.scss";
+@import "../../../../../colors.scss";
+@import "../../../../../properties.scss";
+
+* {
+  font-family: $nunito;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+// * Login Page
+
+.login-container {
+  background: url("../../../../../assets/login/login-background.svg") no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .nav {
+    width: 100%;
+    background-color: $bgColorLoginHeader;
+    justify-content: space-around;
+    padding: 12.5px 0 12.5px 0;
+
+    .nav__item {
+      display: flex;
+
+      .item__link {
+        text-align: center;
+        display: flex;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 20px;
+        border-radius: 0.25rem;
+        cursor: pointer;
+
+        .link__img {
+          max-height: 22px;
+          max-width: 23.65px;
+          margin-right: 4px;
+        }
+
+        .link__content {
+          font-family: $montserrat;
+          font-weight: bold;
+          letter-spacing: 0.5px;
+        }
+
+        &.signin {
+          margin-right: 4px;
+          font-weight: 500;
+        }
+        &.signin:hover {
+          border-radius: 0.25rem;
+          background-color: $hoverDashboard;
+        }
+
+        &.join {
+          border-radius: 0.25rem;
+          background-color: $btnLogin;
+          color: #000;
+        }
+        &.join:hover {
+          transition-duration: 0.25s, 20s;
+          box-shadow: 5px 5px 5px #000;
+        }
+      }
+    }
+  }
+
+  .login__main {
+    background-color: $bgColorLoginHeader;
+    display: grid;
+    place-content: center;
+    margin: auto 20px;
+    padding: 9vh 2.5vw 9vh 2.5vw;
+    border-radius: $borderRadius;
+    height: auto;
+
+    .login-svg {
+      margin: 0 auto;
+      margin-top: -175px;
+      margin-bottom: 20px;
+      max-width: 60%;
+    }
+
+    .login-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .login-btn {
+      text-align: center;
+      min-width: 30%;
+      margin: 0 auto;
+      background-color: $btnLogin;
+      padding: 10px 15px;
+      border-radius: $borderRadius;
+      color: #000;
+    }
+    .login-btn:hover {
+      transition-duration: 0.25s, 20s;
+      box-shadow: 5px 5px 5px #000;
+    }
+  }
+}
+
+// * Login Modal
+
+.modal-header {
+  background-color: $bgColorLoginModal;
+  padding: 16px 32px;
+
+  .modal-title {
+    color: $modalText;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-close {
+    background-color: $modalBgButton;
+  }
+
+  #close {
+    border: 1px solid $btnLogin;
+    box-shadow: 0 0 20px $btnLogin;
+  }
+}
+
+.modal-body {
+  background-color: $bgColorLoginModal;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+  padding: 32px 64px;
+
+  .modal-body__login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    .login-form__field {
+      display: grid;
+      margin-bottom: 20px;
+      color: $modalText;
+
+      .field__label {
+        color: $modalText;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+
+      .field__input {
+        background-color: $inputBgModal;
+        border-radius: $borderRadiusModal;
+        height: 3rem;
+        padding: 0 10px;
+        width: 100%;
+      }
+    }
+
+    .login-form__link {
+      color: $modalText;
+      font-size: 14px;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+
+    .login-form__submit {
+      color: #000;
+      background-color: $btnLogin;
+      text-align: center;
+      max-width: fit-content;
+      padding: 10px 15px;
+      border-radius: $borderRadius;
+    }
+    .login-form__submit:hover {
+      transition-duration: 0.25s, 20s;
+      box-shadow: 5px 5px 5px #000;
+    }
+  }
+}
+
+// * Responsive Background
+@media screen and (max-width: 1250px) {
+  .login-container {
+    background: url("../../../../../assets/login/login-background-laptop.svg")
+      no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .login-container {
+    background: url("../../../../../assets/login/login-background-ipad.svg")
+      no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .background-img {
+    background: url("../../../../../assets/login/login-background-phone.svg")
+      no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+}

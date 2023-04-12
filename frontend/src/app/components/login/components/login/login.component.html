@@ -1,0 +1,199 @@
+<div class="login-container">
+  <ul class="nav">
+    <li class="nav__item">
+      <a (click)="navigateLogin()" class="item__link">
+        <img class="link__img" src="../../../assets/logo.png" />
+        <span class="link__content">Hayrwell</span>
+      </a>
+    </li>
+    <li class="nav__item">
+      <a (click)="openModal(loginModal)" class="item__link signin">Sign in</a>
+      <a class="item__link join">Join now</a>
+    </li>
+  </ul>
+  <div class="login__main">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="177.65"
+      height="182.647"
+      viewBox="0 0 177.65 182.647"
+      class="login-svg"
+    >
+      <g
+        data-v-2e4c4198=""
+        id="Group_107"
+        data-name="Group 107"
+        transform="translate(-703.87 -834.069) rotate(30)"
+      >
+        <rect
+          data-v-2e4c4198=""
+          id="Rectangle_1139"
+          data-name="Rectangle 1139"
+          width="125.053"
+          height="138.703"
+          rx="5"
+          transform="translate(1086.664 335.714)"
+          fill="#525252"
+        ></rect>
+        <g
+          data-v-2e4c4198=""
+          id="Group_117"
+          data-name="Group 117"
+          transform="translate(0 3)"
+        >
+          <rect
+            data-v-2e4c4198=""
+            id="Rectangle_1141"
+            data-name="Rectangle 1141"
+            width="33.142"
+            height="7.175"
+            rx="3.588"
+            transform="translate(1095.617 348.869)"
+            fill="#04a2e4"
+          ></rect>
+          <rect
+            data-v-2e4c4198=""
+            id="Rectangle_1144"
+            data-name="Rectangle 1144"
+            width="18.109"
+            height="7.175"
+            rx="3.588"
+            transform="translate(1095.617 448.088)"
+            fill="#fff"
+          ></rect>
+          <g
+            data-v-2e4c4198=""
+            id="Group_115"
+            data-name="Group 115"
+            transform="translate(0 -9)"
+          >
+            <rect
+              data-v-2e4c4198=""
+              id="Rectangle_1223"
+              data-name="Rectangle 1223"
+              width="22.952"
+              height="3.175"
+              rx="1.588"
+              transform="translate(1095.615 379.566)"
+              fill="#7b7b7b"
+            ></rect>
+            <g data-v-2e4c4198="" id="Group_114" data-name="Group 114">
+              <rect
+                data-v-2e4c4198=""
+                id="Rectangle_1222"
+                data-name="Rectangle 1222"
+                width="108"
+                height="17"
+                rx="2"
+                transform="translate(1095.615 387.566)"
+                fill="#414040"
+              ></rect>
+              <rect
+                data-v-2e4c4198=""
+                id="Rectangle_1226"
+                data-name="Rectangle 1226"
+                width="41.061"
+                height="3.175"
+                rx="1.588"
+                transform="translate(1101.508 394.478)"
+                fill="#6d5d5d"
+              ></rect>
+            </g>
+          </g>
+          <g
+            data-v-2e4c4198=""
+            id="Group_116"
+            data-name="Group 116"
+            transform="translate(0 -9)"
+          >
+            <rect
+              data-v-2e4c4198=""
+              id="Rectangle_1225"
+              data-name="Rectangle 1225"
+              width="22.952"
+              height="3.175"
+              rx="1.588"
+              transform="translate(1095.615 417.566)"
+              fill="#7b7b7b"
+            ></rect>
+            <g data-v-2e4c4198="" id="Group_113" data-name="Group 113">
+              <rect
+                data-v-2e4c4198=""
+                id="Rectangle_1224"
+                data-name="Rectangle 1224"
+                width="108"
+                height="17"
+                rx="2"
+                transform="translate(1095.615 425.566)"
+                fill="#414040"
+              ></rect>
+              <rect
+                data-v-2e4c4198=""
+                id="Rectangle_1227"
+                data-name="Rectangle 1227"
+                width="26.061"
+                height="3.175"
+                rx="1.588"
+                transform="translate(1099.321 432.691)"
+                fill="#6d5d5d"
+              ></rect>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <h1 class="login-title">Please login to view this page</h1>
+    <button (click)="openModal(loginModal)" class="login-btn">Sign in</button>
+  </div>
+</div>
+
+<ng-template #loginModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Login</h4>
+    <button
+      id="close"
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      #f="ngForm"
+      (ngSubmit)="onSubmit(f.value)"
+      class="modal-body__login-form"
+    >
+      <div class="login-form__field">
+        <label class="field__label">Email address</label>
+        <input
+          ngModel
+          name="email"
+          type="text"
+          class="field__input"
+          autocomplete="off"
+          required
+        />
+      </div>
+
+      <div class="login-form__field">
+        <label class="field__label">Password</label>
+        <input
+          ngModel
+          name="password"
+          type="text"
+          class="field__input"
+          autocomplete="off"
+          required
+        />
+      </div>
+
+      <a class="login-form__link"> Forgot your password? </a>
+      <a class="login-form__link"> Create an account? </a>
+
+      <button class="login-form__submit" type="submit">Log in now</button>
+    </form>
+  </div>
+</ng-template>
