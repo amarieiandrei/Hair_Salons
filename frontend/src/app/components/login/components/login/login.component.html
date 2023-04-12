@@ -7,7 +7,11 @@
       </a>
     </li>
     <li class="nav__item">
-      <a (click)="openModal(loginModal)" class="item__link signin">Sign in</a>
+      <a
+        (click)="openModal(loginModal); resetLoginModal()"
+        class="item__link signin"
+        >Sign in</a
+      >
       <a class="item__link join">Join now</a>
     </li>
   </ul>
@@ -143,7 +147,12 @@
       </g>
     </svg>
     <h1 class="login-title">Please login to view this page</h1>
-    <button (click)="openModal(loginModal)" class="login-btn">Sign in</button>
+    <button
+      (click)="openModal(loginModal); resetLoginModal()"
+      class="login-btn"
+    >
+      Sign in
+    </button>
   </div>
 </div>
 
@@ -161,6 +170,20 @@
     </button>
   </div>
   <div class="modal-body">
+    <!-- * Alert -->
+    <div
+      *ngIf="emptyFieldAlert"
+      class="alert alert-danger animation-alert"
+      role="alert"
+      data-name="All Fields Must be Completed"
+    ></div>
+    <div
+      *ngIf="emailAlert"
+      class="alert alert-danger animation-alert"
+      role="alert"
+      data-name="Invalid Email Address"
+    ></div>
+
     <form
       #f="ngForm"
       (ngSubmit)="onSubmit(f.value)"
@@ -169,31 +192,43 @@
       <div class="login-form__field">
         <label class="field__label">Email address</label>
         <input
-          ngModel
-          name="email"
-          type="text"
+          [(ngModel)]="email"
           class="field__input"
+          type="email"
           autocomplete="off"
           required
+          name="mail"
+          ngModel
+          #mail="ngModel"
+          (change)="getValue(mail); verifEmail(email)"
         />
       </div>
 
       <div class="login-form__field">
         <label class="field__label">Password</label>
         <input
-          ngModel
-          name="password"
-          type="text"
+          [(ngModel)]="password"
           class="field__input"
+          type="password"
           autocomplete="off"
           required
+          name="psw"
+          ngModel
+          #psw="ngModel"
+          (change)="getValue(psw)"
         />
       </div>
 
       <a class="login-form__link"> Forgot your password? </a>
       <a class="login-form__link"> Create an account? </a>
 
-      <button class="login-form__submit" type="submit">Log in now</button>
+      <button
+        class="btn btn-primary login-form__submit"
+        [disabled]="disableSubmit"
+        type="submit"
+      >
+        Log in now
+      </button>
     </form>
   </div>
 </ng-template>

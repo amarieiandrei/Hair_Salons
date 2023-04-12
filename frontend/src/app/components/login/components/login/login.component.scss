@@ -139,6 +139,48 @@
   border-bottom-right-radius: $borderRadius;
   padding: 32px 64px;
 
+  // * Alerts
+
+  .alert-danger {
+  }
+
+  .animation-alert {
+    animation-duration: 500ms;
+    animation-name: animationAlert;
+    overflow: hidden;
+    height: 40px;
+    width: 100%;
+    padding: 8px;
+    margin: 0 auto;
+    text-align: center;
+    transition-delay: 1000ms;
+    margin-bottom: 5px;
+  }
+  .animation-alert::before {
+    content: attr(data-name);
+    animation-fill-mode: backwards;
+    transition: opacity 1s;
+    animation: fadeIn 3s;
+  }
+
+  @keyframes animationAlert {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   .modal-body__login-form {
     display: flex;
     flex-direction: column;
@@ -161,6 +203,8 @@
         height: 3rem;
         padding: 0 10px;
         width: 100%;
+        font-family: $nunito;
+        letter-spacing: 0.5px;
       }
     }
 
@@ -171,17 +215,19 @@
       cursor: pointer;
     }
 
-    .login-form__submit {
-      color: #000;
-      background-color: $btnLogin;
-      text-align: center;
-      max-width: fit-content;
-      padding: 10px 15px;
-      border-radius: $borderRadius;
-    }
-    .login-form__submit:hover {
-      transition-duration: 0.25s, 20s;
-      box-shadow: 5px 5px 5px #000;
+    .btn {
+      &.login-form__submit {
+        color: #000;
+        background-color: $btnLogin;
+        text-align: center;
+        max-width: fit-content;
+        padding: 10px 15px;
+        border-radius: $borderRadius;
+        border: none;
+      }
+      &.btn-primary:hover {
+        background-color: $btnLoginHover;
+      }
     }
   }
 }
