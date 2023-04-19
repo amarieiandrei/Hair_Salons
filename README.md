@@ -1,2 +1,2 @@
-# NEIZ-2.0
+# Hair_Salons
 Angular Web Application
