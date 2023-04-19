@@ -233,6 +233,15 @@
 }
 
 // * Responsive Background
+@media screen and (min-width: 1250px) {
+  .login-container {
+    background: url("../../../../../assets/login/login-background.svg")
+      no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+}
+
 @media screen and (max-width: 1250px) {
   .login-container {
     background: url("../../../../../assets/login/login-background-laptop.svg")

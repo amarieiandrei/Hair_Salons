@@ -12,7 +12,7 @@
         class="item__link signin"
         >Sign in</a
       >
-      <a class="item__link join">Join now</a>
+      <a routerLink="/register" class="item__link join">Join now</a>
     </li>
   </ul>
   <div class="login__main">
@@ -220,7 +220,9 @@
       </div>
 
       <a class="login-form__link"> Forgot your password? </a>
-      <a class="login-form__link"> Create an account? </a>
+      <a (click)="navigateRegister()" class="login-form__link">
+        Create an account?
+      </a>
 
       <button
         class="btn btn-primary login-form__submit"

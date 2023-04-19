@@ -47,6 +47,15 @@ export class LoginComponent implements AfterViewInit {
     this._router.navigate(["/login"]);
   };
 
+  public navigateRegister = (): void => {
+    this._closeModal();
+    (() => {
+      setTimeout(() => {
+        this._router.navigate(["/register"]);
+      }, 250);
+    })();
+  };
+
   verifEmail = (email: string): void => {
     this.emailAlert = !this._loginService.isEmail(email);
   };

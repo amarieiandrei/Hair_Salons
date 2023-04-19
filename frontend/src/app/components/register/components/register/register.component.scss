@@ -1,0 +1,148 @@
+@import "../../../../../colors.scss";
+@import "../../../../../fonts.scss";
+@import "../../../../../properties.scss";
+
+* {
+  background-color: $bgColorDashboard;
+  color: #fff;
+  font-family: $nunito;
+}
+
+.col {
+  .modal {
+    display: grid;
+    padding: 50px 20px;
+    max-width: 50%;
+    min-height: 100vh;
+    color: #000;
+    // padding-right: 0;
+
+    box-shadow: 0 0 20px $btnLogin;
+
+    .modal-header {
+      background-color: $bgColorLoginModal;
+      padding: 16px 32px;
+
+      .modal-title {
+        background-color: $bgColorLoginModal;
+        color: $modalText;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-close {
+        background-color: $modalBgButton;
+      }
+
+      #close {
+        border: 1px solid $btnLogin;
+        box-shadow: 0 0 20px $btnLogin;
+      }
+    }
+
+    .modal-body {
+      background-color: $bgColorLoginModal;
+      border-bottom-left-radius: $borderRadius;
+      border-bottom-right-radius: $borderRadius;
+      padding: 32px 64px;
+
+      .modal-body__register-form {
+        background-color: $bgColorLoginModal;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+
+        .register-form__field {
+          background-color: $bgColorLoginModal;
+          display: grid;
+          margin-bottom: 20px;
+          color: $modalText;
+
+          .field__label {
+            background-color: $bgColorLoginModal;
+            color: $modalText;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+          }
+
+          .field__input {
+            background-color: $inputBgModal;
+            border-radius: $borderRadiusModal;
+            height: 3rem;
+            padding: 0 10px;
+            width: 100%;
+            font-family: $nunito;
+            letter-spacing: 0.5px;
+          }
+        }
+
+        .form-check {
+          background-color: $bgColorLoginModal;
+          margin-bottom: 15px;
+
+          .form-check-input {
+            border: 1px dotted $btnLogin;
+            box-shadow: 0 0 3px $btnLogin;
+            outline-offset: 0px;
+            outline: none;
+          }
+
+          .form-check-input[type="checkbox"]:checked {
+            background-color: $btnLogin;
+          }
+
+          .form-check-label {
+            background-color: $bgColorLoginModal;
+            color: $modalText;
+          }
+        }
+
+        .btn {
+          &.register-form__submit {
+            color: #000;
+            background-color: $btnLogin;
+            text-align: center;
+            max-width: fit-content;
+            padding: 10px 15px;
+            border-radius: $borderRadius;
+            border: none;
+          }
+          &.btn-primary:hover {
+            background-color: $btnLoginHover;
+          }
+        }
+      }
+    }
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .modal::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .modal {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .bg-image {
+    background-image: url("../../../../../assets/register/4.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-position: right -20%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .bg-image {
+    display: none;
+  }
+
+  .col {
+    .modal {
+      max-width: 100%;
+      padding-right: 20px;
+    }
+  }
+}
