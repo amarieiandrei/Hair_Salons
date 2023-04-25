@@ -46,11 +46,50 @@
       border-bottom-right-radius: $borderRadius;
       padding: 32px 64px;
 
+      // * Alerts
+      .animation-alert {
+        animation-duration: 500ms;
+        animation-name: animationAlert;
+        overflow: hidden;
+        height: 40px;
+        width: 100%;
+        padding: 8px;
+        margin: 0 auto;
+        text-align: center;
+        transition-delay: 1000ms;
+        margin-bottom: 5px;
+      }
+      .animation-alert::before {
+        content: attr(data-name);
+        animation-fill-mode: backwards;
+        transition: opacity 1s;
+        animation: fadeIn 3s;
+      }
+
+      @keyframes animationAlert {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
       .modal-body__register-form {
         background-color: $bgColorLoginModal;
         display: flex;
         flex-direction: column;
         align-items: left;
+        margin-top: 15px;
 
         .register-form__field {
           background-color: $bgColorLoginModal;
@@ -74,6 +113,100 @@
             font-family: $nunito;
             letter-spacing: 0.5px;
           }
+
+          .field__btn {
+            position: absolute;
+            right: 0;
+            margin-right: 75px;
+            margin-top: 37.5px;
+            color: $modalText;
+            letter-spacing: 0.5px;
+            // border: 1px solid red;
+          }
+        }
+
+        .alert-container {
+          background-color: $bgColorLoginModal;
+
+          .alert-custom {
+            border-radius: $borderRadius;
+            margin: 0;
+            margin-top: -10px;
+            margin-bottom: 5px;
+
+            .alert-custom__text {
+              background-color: $bgAlertPsw;
+              color: green;
+              font-weight: bold;
+            }
+          }
+        }
+
+        .password-rules {
+          display: grid;
+          place-content: center;
+          margin: 0 auto;
+          margin-bottom: 15px;
+          padding: 15px;
+          border-radius: $borderRadius;
+          background-color: $bgColorLoginModal;
+
+          border: 1px solid $btnLogin;
+          box-shadow: 0 0 3px $btnLogin;
+          outline-offset: 0px;
+          outline: none;
+
+          .rules__container {
+            padding: 5px;
+            display: flex;
+            flex-direction: row;
+            place-items: center;
+            background-color: $bgColorLoginModal;
+
+            .spinner-border {
+              width: 15px;
+              height: 15px;
+
+              &.spinner-custom {
+                background-color: $bgColorLoginModal;
+                color: $modalText;
+                margin-right: 5px;
+                font-size: 12px;
+              }
+            }
+            .faCheck {
+              background-color: $bgColorLoginModal;
+              color: $btnLogin;
+              margin-right: 5px;
+              font-size: 1rem;
+            }
+            .container__text {
+              margin: 0;
+              background-color: $bgColorLoginModal;
+              color: $modalText;
+              font-weight: bold;
+              letter-spacing: 0.5px;
+            }
+          }
+        }
+
+        .alert-danger-custom {
+          margin-top: -10px;
+
+          .alert-danger-custom__text {
+            background-color: $bgAlertDanger;
+            color: rgb(142, 0, 0);
+            font-weight: bold;
+          }
+        }
+
+        .register-form__link {
+          background-color: $bgColorLoginModal;
+          color: $modalText;
+          font-size: 14px;
+          margin-bottom: 15px;
+          cursor: pointer;
+          width: fit-content;
         }
 
         .form-check {
@@ -144,5 +277,11 @@
       max-width: 100%;
       padding-right: 20px;
     }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .spinner-border {
+    display: none;
   }
 }
