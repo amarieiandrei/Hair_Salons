@@ -4,6 +4,8 @@ import { RegisterService } from "src/app/services/register.service";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import { Router } from "@angular/router";
+import { User } from "./types/user.interface";
+import { ConfigService } from "src/app/services/config.service";
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -45,7 +47,8 @@ export class RegisterComponent {
   constructor(
     private _modalService: BsModalService,
     private _registerService: RegisterService,
-    private _router: Router
+    private _router: Router,
+    private _configService: ConfigService
   ) {}
 
   openModal(template: TemplateRef<any>) {
@@ -141,7 +144,10 @@ export class RegisterComponent {
   };
 
   public onSubmit = (values: any): void => {
-    console.log(values);
+    // console.log(values);
+
+    const user: User = values;
+    this._configService.createUser(user);
 
     // * Reset Modal Fields
     this.inputName = "";

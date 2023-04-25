@@ -1,3 +1,5 @@
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -7,6 +9,7 @@ const morgan = require("morgan");
 require("dotenv/config");
 
 // * Import Routes
+const users = require("./routes/users");
 const cardsRoute = require("./routes/cards");
 
 // * Middlewares
@@ -17,7 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(morgan(":url :method"));
-app.use("/cards", cardsRoute);
+app.use("/api/users", users);
+app.use("/api/cards", cardsRoute);
 
 // * Routes
 

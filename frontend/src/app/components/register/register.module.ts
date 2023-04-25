@@ -9,6 +9,7 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { RegisterComponent } from "./components/register/register.component";
 
 import { RegisterService } from "src/app/services/register.service";
+import { ConfigService } from "src/app/services/config.service";
 @NgModule({
   declarations: [RegisterComponent],
   imports: [
@@ -19,7 +20,7 @@ import { RegisterService } from "src/app/services/register.service";
     FontAwesomeModule,
     SweetAlert2Module.forRoot(),
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, ConfigService],
   exports: [RegisterComponent],
 })
 export class RegisterModule {}
