@@ -33,6 +33,7 @@ export class RegisterComponent {
   public isSpecialCharacter: boolean = false;
   public isMinimumLength: boolean = false;
 
+  public nameAlert: boolean = false;
   public emailAlert: boolean = false;
 
   public inputName!: string;
@@ -55,6 +56,10 @@ export class RegisterComponent {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this._modalService.show(template);
   }
+
+  public verifName = (name: string): void => {
+    this.nameAlert = !this._registerService.isName(name);
+  };
 
   public verifEmail = (email: string): void => {
     this.emailAlert = !this._registerService.isEmail(email);
@@ -111,14 +116,14 @@ export class RegisterComponent {
     this.isMinimumLength = this._registerService.verifPswLength(
       this.inputPassword
     );
-
-    if (this.passwordEntered) {
-      this.quitPswRules();
-    }
   };
 
   public getValue = (f: any): void => {
     // console.log(f);
+
+    if (this.passwordEntered) {
+      this.quitPswRules();
+    }
 
     this.disableSubmit =
       this.inputName &&
@@ -126,6 +131,7 @@ export class RegisterComponent {
       this.inputPassword &&
       this.inputConfirmPassword &&
       this._registerService.isEmail(this.inputEmail) &&
+      this._registerService.isName(this.inputName) &&
       this.isLowercase &&
       this.isUppercase &&
       this.isNumber &&
@@ -137,9 +143,8 @@ export class RegisterComponent {
   };
 
   public onSubmit = (values: any): void => {
-    // console.log(values);
-
     const user: User = values;
+
     this._configService.createUser(user);
 
     // * Reset Modal Fields
@@ -169,5 +174,18 @@ export class RegisterComponent {
       this.inputPassword,
       this.inputConfirmPassword
     );
+  };
+
+  public handleReTypePassword = (): void => {
+    this.inputPassword = "";
+    this.isUppercase = false;
+    this.isLowercase = false;
+    this.isNumber = false;
+    this.isMinimumLength = false;
+    this.isSpecialCharacter = false;
+    this.isPswRules = false;
+    this.disablePassword = false;
+    this.passwordEntered = false;
+    this.disableSubmit = true;
   };
 }

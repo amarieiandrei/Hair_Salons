@@ -13,7 +13,7 @@ export class ConfigService {
 
   createUser = (user: User): void => {
     const headers = new HttpHeaders({
-      myHeader: "maliakademy",
+      myHeader: "post",
     });
 
     this._http

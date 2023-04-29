@@ -6,6 +6,10 @@ import { Injectable } from "@angular/core";
 export class RegisterService {
   constructor() {}
 
+  public isName = (name: string): boolean => {
+    return name.length > 2 && name !== "" ? true : false;
+  };
+
   public isEmail = (email: string): boolean => {
     const emailPattern =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -13,7 +17,10 @@ export class RegisterService {
   };
 
   public verifPswLength(password: string): boolean {
-    if (password?.length < 6) {
+    if (password === undefined) {
+      return false;
+    }
+    if (password.length < 6) {
       return false;
     }
     return true;

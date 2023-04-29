@@ -113,6 +113,14 @@
             font-family: $nunito;
             letter-spacing: 0.5px;
 
+            &.input-psw {
+              padding: 0 70px 0 10px;
+            }
+
+            &.input-confirmPsw {
+              padding: 0 70px 0 10px;
+            }
+
             &.disable-password {
               background-color: $disabledInputBgModal;
             }
@@ -125,7 +133,6 @@
             margin-top: 37.5px;
             color: $modalText;
             letter-spacing: 0.5px;
-            // border: 1px solid red;
           }
         }
 
@@ -243,6 +250,17 @@
             padding: 10px 15px;
             border-radius: $borderRadius;
             border: none;
+
+            &.retype-psw-btn {
+              padding: 5px 10px;
+              position: absolute;
+              right: 0;
+              margin-right: 64px;
+              margin-top: -15px;
+              color: $modalText;
+              letter-spacing: 0.5px;
+              box-shadow: 0 0 3px $btnLogin;
+            }
           }
           &.btn-primary:hover {
             background-color: $btnLoginHover;
@@ -287,5 +305,10 @@
 @media only screen and (max-width: 450px) {
   .spinner-border {
     display: none;
+  }
+
+  #retype-psw-btn-responsive {
+    position: static;
+    margin-top: 20px;
   }
 }

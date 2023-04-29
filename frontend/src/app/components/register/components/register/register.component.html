@@ -17,6 +17,12 @@
         <div class="modal-body">
           <!-- * Alert -->
           <div
+            *ngIf="nameAlert"
+            class="alert alert-danger animation-alert"
+            role="alert"
+            data-name="Name must be at least 3 letters"
+          ></div>
+          <div
             *ngIf="emailAlert"
             class="alert alert-danger animation-alert"
             role="alert"
@@ -40,7 +46,7 @@
                 name="name"
                 ngModel
                 #name="ngModel"
-                (change)="getValue(name)"
+                (change)="getValue(name); verifName(inputName)"
               />
             </div>
             <div class="register-form__field">
@@ -60,8 +66,8 @@
             <div class="register-form__field">
               <label class="field__label">Password</label>
               <input
+                [readonly]="disablePassword"
                 [ngClass]="disablePassword ? 'disable-password' : ''"
-                [disabled]="disablePassword"
                 (copy)="$event.preventDefault()"
                 (paste)="$event.preventDefault()"
                 [type]="pswType ? 'normal' : 'password'"
@@ -69,7 +75,7 @@
                 (keyup)="verifPswRules()"
                 (focus)="showPswRules()"
                 [(ngModel)]="inputPassword"
-                class="field__input"
+                class="field__input input-psw"
                 type="password"
                 autocomplete="off"
                 required
@@ -78,6 +84,17 @@
                 #password="ngModel"
                 (change)="getValue(password)"
               />
+
+              <button
+                (click)="handleReTypePassword()"
+                *ngIf="disablePassword"
+                type="button"
+                class="btn btn-primary register-form__submit retype-psw-btn"
+                id="retype-psw-btn-responsive"
+              >
+                Re-type Password
+              </button>
+
               <button (click)="tooglePsw()" class="field__btn" type="button">
                 {{ pswText }}
               </button>
@@ -163,7 +180,7 @@
                 (focusout)="handleIsPasswordsEquals()"
                 (keydown.space)="$event.preventDefault()"
                 [(ngModel)]="inputConfirmPassword"
-                class="field__input"
+                class="field__input input-confirmPsw"
                 type="password"
                 autocomplete="off"
                 required
