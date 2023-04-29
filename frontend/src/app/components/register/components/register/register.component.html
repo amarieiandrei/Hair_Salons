@@ -17,12 +17,6 @@
         <div class="modal-body">
           <!-- * Alert -->
           <div
-            *ngIf="emptyFieldAlert"
-            class="alert alert-danger animation-alert"
-            role="alert"
-            data-name="All Fields Must be Completed"
-          ></div>
-          <div
             *ngIf="emailAlert"
             class="alert alert-danger animation-alert"
             role="alert"
@@ -66,10 +60,13 @@
             <div class="register-form__field">
               <label class="field__label">Password</label>
               <input
+                [ngClass]="disablePassword ? 'disable-password' : ''"
+                [disabled]="disablePassword"
+                (copy)="$event.preventDefault()"
+                (paste)="$event.preventDefault()"
                 [type]="pswType ? 'normal' : 'password'"
                 (keydown.space)="$event.preventDefault()"
                 (keyup)="verifPswRules()"
-                (focusout)="quitPswRules()"
                 (focus)="showPswRules()"
                 [(ngModel)]="inputPassword"
                 class="field__input"
@@ -84,15 +81,6 @@
               <button (click)="tooglePsw()" class="field__btn" type="button">
                 {{ pswText }}
               </button>
-            </div>
-
-            <!-- * Password Rules Succesfully Typed Alert -->
-
-            <div *ngIf="!isPswRules && pswVerified" class="alert-container">
-              <div class="alert alert-success alert-custom" role="alert">
-                <span class="alert-custom__text">Well done!</span>
-                You Succesfully Typed a Valid Password
-              </div>
             </div>
 
             <!-- * Password Rules Popover -->
@@ -169,6 +157,8 @@
             <div class="register-form__field">
               <label class="field__label">Confirm Password</label>
               <input
+                (copy)="$event.preventDefault()"
+                (paste)="$event.preventDefault()"
                 [type]="confirmPswType ? 'normal' : 'password'"
                 (focusout)="handleIsPasswordsEquals()"
                 (keydown.space)="$event.preventDefault()"

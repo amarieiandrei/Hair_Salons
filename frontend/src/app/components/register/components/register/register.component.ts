@@ -16,13 +16,15 @@ export class RegisterComponent {
   public faCheck = faCheck;
 
   // * Fields
+  public disablePassword: boolean = false;
+  public passwordEntered: boolean = false;
+
   public confirmPswType: boolean = false;
   public pswType: boolean = false;
   public confirmPswText: string = "SHOW";
   public pswText: string = "SHOW";
 
   public isPasswordsEquals: boolean = false;
-  public pswVerified: boolean = false;
   public isPswRules: boolean = false;
 
   public isUppercase: boolean = false;
@@ -32,7 +34,6 @@ export class RegisterComponent {
   public isMinimumLength: boolean = false;
 
   public emailAlert: boolean = false;
-  public emptyFieldAlert: boolean = false;
 
   public inputName!: string;
   public inputEmail!: string;
@@ -77,7 +78,10 @@ export class RegisterComponent {
   };
 
   public showPswRules = (): void => {
-    this.isPswRules = true;
+    if (this.passwordEntered === false) {
+      this.isPswRules = true;
+      this.passwordEntered = true;
+    }
   };
 
   public quitPswRules = (): void => {
@@ -88,13 +92,7 @@ export class RegisterComponent {
       this.isMinimumLength &&
       this.isSpecialCharacter
     ) {
-      this.isPswRules = false;
-      this.pswVerified = true;
-
-      setTimeout(() => {
-        this.pswVerified = false;
-      }, 1200);
-    } else {
+      this.disablePassword = true;
       this.isPswRules = false;
     }
   };
@@ -113,19 +111,14 @@ export class RegisterComponent {
     this.isMinimumLength = this._registerService.verifPswLength(
       this.inputPassword
     );
+
+    if (this.passwordEntered) {
+      this.quitPswRules();
+    }
   };
 
   public getValue = (f: any): void => {
     // console.log(f);
-
-    this.emptyFieldAlert = this._registerService.verifEmptyFieldsAlert(
-      this.inputName,
-      this.inputEmail,
-      this.inputPassword,
-      this.inputConfirmPassword
-    );
-
-    this.handleIsPasswordsEquals();
 
     this.disableSubmit =
       this.inputName &&
@@ -138,7 +131,7 @@ export class RegisterComponent {
       this.isNumber &&
       this.isSpecialCharacter &&
       this.isMinimumLength &&
-      !this.isPasswordsEquals
+      this.inputPassword.localeCompare(this.inputConfirmPassword) === 0
         ? false
         : true;
   };
