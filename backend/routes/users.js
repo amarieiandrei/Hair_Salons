@@ -10,6 +10,7 @@ router.post("/", async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   let user = await User.findOne({ email: req.body.email });
+  if (user) console.log("User with Email Exist");
   if (user) return res.status(400).send("User already registered.");
 
   if (req.body.password.localeCompare(req.body.confirmPassword) !== 0)

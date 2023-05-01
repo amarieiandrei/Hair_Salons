@@ -1,3 +1,4 @@
+const config = require("config");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const express = require("express");
@@ -9,6 +10,7 @@ const morgan = require("morgan");
 require("dotenv/config");
 
 // * Import Routes
+const auth = require("./routes/auth");
 const users = require("./routes/users");
 const cardsRoute = require("./routes/cards");
 
@@ -20,8 +22,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(morgan(":url :method"));
+app.use("/api/auth", auth);
 app.use("/api/users", users);
 app.use("/api/cards", cardsRoute);
+
+// * Authentication
+
+if (!config.get("jwtPrivateKey")) {
+  console.log("FATAL ERROR: jwtPrivateKey is not defined.");
+  process.exit(1);
+}
 
 // * Routes
 
