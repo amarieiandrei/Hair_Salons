@@ -16,6 +16,8 @@ export class RegisterComponent {
   public faCheck = faCheck;
 
   // * Fields
+  public isEmailUsed: boolean = false;
+
   public disablePassword: boolean = false;
   public passwordEntered: boolean = false;
 
@@ -43,6 +45,13 @@ export class RegisterComponent {
 
   public disableSubmit: boolean = true;
 
+  // public inputName: string = "test";
+  // public inputEmail: string = "test@test.ro";
+  // public inputPassword: string = "Andrei123!";
+  // public inputConfirmPassword: string = "Andrei123!";
+
+  // public disableSubmit: boolean = false;
+
   // * Modal
   public modalRef?: BsModalRef;
 
@@ -63,6 +72,7 @@ export class RegisterComponent {
 
   public verifEmail = (email: string): void => {
     this.emailAlert = !this._registerService.isEmail(email);
+    this.isEmailUsed = false;
   };
 
   public tooglePsw = (): void => {
@@ -145,28 +155,37 @@ export class RegisterComponent {
   public onSubmit = (values: any): void => {
     const user: User = values;
 
-    this._configService.createUser(user);
+    // * Register User
+    this._configService.createUser(user).subscribe((data: any) => {
+      // console.log(data);
 
-    // * Reset Modal Fields
-    this.inputName = "";
-    this.inputEmail = "";
-    this.inputPassword = "";
-    this.inputConfirmPassword = "";
-    this.disableSubmit = true;
+      if (data.success !== undefined && !data.success) {
+        // console.log(data.msg);
+        this.isEmailUsed = true;
+        this.disableSubmit = true;
+      } else {
+        // console.log("You are now registered and can log in");
 
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: "You are Succesfully Register!",
-      showConfirmButton: false,
-      timer: 1125,
+        // * Reset Modal Fields
+        this.inputName = "";
+        this.inputEmail = "";
+        this.inputPassword = "";
+        this.inputConfirmPassword = "";
+        this.disableSubmit = true;
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "You are Succesfully Register!",
+          showConfirmButton: false,
+          timer: 1125,
+        });
+        (() => {
+          setTimeout(() => {
+            this._router.navigate(["/login"]);
+          }, 1000);
+        })();
+      }
     });
-
-    (() => {
-      setTimeout(() => {
-        this._router.navigate(["/login"]);
-      }, 1000);
-    })();
   };
 
   public handleIsPasswordsEquals = (): void => {

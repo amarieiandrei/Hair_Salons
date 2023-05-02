@@ -58,6 +58,10 @@
         text-align: center;
         transition-delay: 1000ms;
         margin-bottom: 5px;
+
+        &.email-find-database {
+          height: 38px;
+        }
       }
       .animation-alert::before {
         content: attr(data-name);

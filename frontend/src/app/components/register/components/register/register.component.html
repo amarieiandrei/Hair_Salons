@@ -28,6 +28,12 @@
             role="alert"
             data-name="Invalid Email Address"
           ></div>
+          <div
+            *ngIf="isEmailUsed"
+            class="alert alert-danger animation-alert email-find-database"
+            role="alert"
+            data-name="Already exist an User with same Email Address in DB"
+          ></div>
 
           <form
             #f="ngForm"
