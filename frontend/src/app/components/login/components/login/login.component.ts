@@ -82,8 +82,7 @@ export class LoginComponent implements AfterViewInit {
       // console.log(data);
 
       if (!data.success) {
-        // console.log(data.msg);
-
+        console.log(data.msg);
         this.isAccount = true;
         this.disableSubmit = true;
       } else {
