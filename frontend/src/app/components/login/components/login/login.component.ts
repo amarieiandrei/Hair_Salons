@@ -6,6 +6,8 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
+import { User } from "src/app/components/register/components/register/types/user.interface";
+import { ConfigService } from "src/app/services/config.service";
 import { LoginService } from "src/app/services/login.service";
 import Swal from "sweetalert2";
 @Component({
@@ -15,10 +17,16 @@ import Swal from "sweetalert2";
 })
 export class LoginComponent implements AfterViewInit {
   // * Fields
-  public emptyFieldAlert: boolean = false;
+  public isAccount: boolean = false;
+
+  public pswType: boolean = false;
+  public pswText: string = "SHOW";
+
   public emailAlert: boolean = false;
-  public password!: string;
-  public email!: string;
+
+  public inputEmail!: string;
+  public inputPassword!: string;
+
   public disableSubmit: boolean = true;
 
   // * Modal
@@ -28,7 +36,8 @@ export class LoginComponent implements AfterViewInit {
   constructor(
     private _router: Router,
     private _modalService: BsModalService,
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private _configService: ConfigService
   ) {}
 
   ngAfterViewInit(): void {
@@ -58,45 +67,73 @@ export class LoginComponent implements AfterViewInit {
 
   verifEmail = (email: string): void => {
     this.emailAlert = !this._loginService.isEmail(email);
+    this.isAccount = false;
+  };
+
+  verifPassword = (): void => {
+    this.isAccount = false;
   };
 
   public onSubmit = (values: any): void => {
-    console.log(values);
+    const user: User = values;
 
-    // * Reset Modal Fields
-    this.email = "";
-    this.password = "";
-    this.disableSubmit = true;
+    // * Auth User
+    this._configService.authUser(user).subscribe((data: any) => {
+      // console.log(data);
 
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: "You are Succesfully Log In!",
-      showConfirmButton: false,
-      timer: 1125,
+      if (!data.success) {
+        // console.log(data.msg);
+
+        this.isAccount = true;
+        this.disableSubmit = true;
+      } else {
+        console.log("You are now logged in and can edit dashboard");
+        console.log(data);
+
+        // * Reset Modal Fields
+        this.inputEmail = "";
+        this.inputPassword = "";
+        this.disableSubmit = true;
+
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "You are Succesfully Log In!",
+          showConfirmButton: false,
+          timer: 1125,
+        });
+
+        (() => {
+          setTimeout(() => {
+            this._router.navigate(["/dashboard"]);
+            this._closeModal();
+          }, 1000);
+        })();
+      }
     });
-
-    (() => {
-      setTimeout(() => {
-        this._router.navigate(["/dashboard"]);
-        this._closeModal();
-      }, 1000);
-    })();
   };
 
   public getValue = (f: any): void => {
-    this.emptyFieldAlert = !this.email || !this.password ? true : false;
     this.disableSubmit =
-      this.email && this.password && this._loginService.isEmail(this.email)
+      this.inputEmail &&
+      this.inputPassword &&
+      this._loginService.isEmail(this.inputEmail)
         ? false
         : true;
   };
 
   public resetLoginModal = (): void => {
-    this.email = "";
-    this.password = "";
+    this.inputEmail = "";
+    this.inputPassword = "";
     this.disableSubmit = true;
-    this.emptyFieldAlert = false;
     this.emailAlert = false;
+  };
+
+  public tooglePsw = (): void => {
+    this.pswType = !this.pswType;
+
+    this.pswText.localeCompare("SHOW") === 0
+      ? (this.pswText = "HIDE")
+      : (this.pswText = "SHOW");
   };
 }

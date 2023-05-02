@@ -8,6 +8,7 @@ import { RouterModule } from "@angular/router";
 import { LoginComponent } from "./components/login/login.component";
 
 import { LoginService } from "src/app/services/login.service";
+import { ConfigService } from "src/app/services/config.service";
 @NgModule({
   declarations: [LoginComponent],
   imports: [
@@ -17,7 +18,7 @@ import { LoginService } from "src/app/services/login.service";
     SweetAlert2Module.forRoot(),
     RouterModule,
   ],
-  providers: [LoginService],
+  providers: [LoginService, ConfigService],
   exports: [LoginComponent],
 })
 export class LoginModule {}

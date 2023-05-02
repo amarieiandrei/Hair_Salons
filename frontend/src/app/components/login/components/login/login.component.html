@@ -172,16 +172,16 @@
   <div class="modal-body">
     <!-- * Alert -->
     <div
-      *ngIf="emptyFieldAlert"
-      class="alert alert-danger animation-alert"
-      role="alert"
-      data-name="All Fields Must be Completed"
-    ></div>
-    <div
       *ngIf="emailAlert"
       class="alert alert-danger animation-alert"
       role="alert"
       data-name="Invalid Email Address"
+    ></div>
+    <div
+      *ngIf="isAccount"
+      class="alert alert-danger animation-alert"
+      role="alert"
+      data-name="This Email/Password doesn't match our records"
     ></div>
 
     <form
@@ -192,31 +192,37 @@
       <div class="login-form__field">
         <label class="field__label">Email address</label>
         <input
-          [(ngModel)]="email"
+          [(ngModel)]="inputEmail"
           class="field__input"
           type="email"
           autocomplete="off"
           required
-          name="mail"
+          name="email"
           ngModel
-          #mail="ngModel"
-          (change)="getValue(mail); verifEmail(email)"
+          #email="ngModel"
+          (change)="getValue(email); verifEmail(inputEmail)"
         />
       </div>
 
       <div class="login-form__field">
         <label class="field__label">Password</label>
         <input
-          [(ngModel)]="password"
+          [(ngModel)]="inputPassword"
           class="field__input"
-          type="password"
+          (copy)="$event.preventDefault()"
+          (paste)="$event.preventDefault()"
+          (keydown.space)="$event.preventDefault()"
+          [type]="pswType ? 'normal' : 'password'"
           autocomplete="off"
           required
-          name="psw"
+          name="password"
           ngModel
-          #psw="ngModel"
-          (change)="getValue(psw)"
+          #password="ngModel"
+          (change)="getValue(password); verifPassword()"
         />
+        <button (click)="tooglePsw()" class="field__btn" type="button">
+          {{ pswText }}
+        </button>
       </div>
 
       <a class="login-form__link"> Forgot your password? </a>

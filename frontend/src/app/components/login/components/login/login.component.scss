@@ -148,7 +148,7 @@
     animation-duration: 500ms;
     animation-name: animationAlert;
     overflow: hidden;
-    height: 40px;
+    height: 38px;
     width: 100%;
     padding: 8px;
     margin: 0 auto;
@@ -206,6 +206,15 @@
         font-family: $nunito;
         letter-spacing: 0.5px;
       }
+
+      .field__btn {
+        position: absolute;
+        right: 0;
+        margin-right: 75px;
+        margin-top: 37.5px;
+        color: $modalText;
+        letter-spacing: 0.5px;
+      }
     }
 
     .login-form__link {
@@ -213,6 +222,7 @@
       font-size: 14px;
       margin-bottom: 15px;
       cursor: pointer;
+      width: fit-content;
     }
 
     .btn {
@@ -266,5 +276,11 @@
       no-repeat;
     background-size: cover;
     height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 250px) {
+  .field__btn {
+    display: none;
   }
 }
