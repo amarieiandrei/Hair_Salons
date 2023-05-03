@@ -38,6 +38,10 @@ userSchema.methods.generateAuthToken = function () {
 
 const User = mongoose.model("User", userSchema);
 
+module.exports.getUserById = function (id, callback) {
+  User.findById(id, callback);
+};
+
 const complexityOptions = {
   min: 6,
   max: 1024,

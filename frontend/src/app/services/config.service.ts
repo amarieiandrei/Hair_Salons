@@ -9,10 +9,11 @@ export class ConfigService {
   // * Apis
   private _usersUrl = "http://localhost:5000/api/users";
   private _authUrl = "http://localhost:5000/api/auth";
+  private _profileUrl = "http://localhost:5000/api/profile";
 
   // * Fields
-  private _authToken!: string;
-  private _user!: object;
+  private _authToken!: any;
+  private _user!: object | null;
 
   constructor(private _http: HttpClient) {}
 
@@ -36,6 +37,16 @@ export class ConfigService {
       .pipe(map((res) => res));
   };
 
+  public getProfile = (): any => {
+    let headers = new HttpHeaders();
+    headers.append("Authorization", this._authToken);
+    headers.append("Content-Type", "application/json; charset=utf-8");
+    this.loadToken();
+    return this._http
+      .get(this._profileUrl, { headers: headers })
+      .pipe(map((res) => res));
+  };
+
   public storeUserData = (token: string, user: object): void => {
     localStorage.setItem("id_token", token);
     localStorage.setItem("user", JSON.stringify(user));
@@ -44,9 +55,14 @@ export class ConfigService {
     this._user = user;
   };
 
+  public loadToken = (): void => {
+    const token = localStorage.getItem("id_token");
+    this._authToken = token;
+  };
+
   public logout = (): void => {
-    this._authToken = "";
-    this._user = {};
+    this._authToken = null;
+    this._user = null;
     localStorage.clear();
   };
 }

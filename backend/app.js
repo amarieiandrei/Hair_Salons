@@ -10,6 +10,7 @@ const morgan = require("morgan");
 require("dotenv/config");
 
 // * Import Routes
+const profile = require("./routes/profile");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
 const cardsRoute = require("./routes/cards");
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(morgan(":url :method"));
+app.use("/api/profile", profile);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
 app.use("/api/cards", cardsRoute);

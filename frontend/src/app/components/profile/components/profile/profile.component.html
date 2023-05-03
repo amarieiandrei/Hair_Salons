@@ -3,3 +3,12 @@
 <button style="background-color: #000; color: #fff" (click)="onLogoutClicked()">
   Log out
 </button>
+
+<div style="color: #000" *ngIf="user">
+  <h2 class="page-header">{{ user.id }}</h2>
+
+  <ul class="list-group">
+    <li class="list-group-item">Name: {{ user.name }}</li>
+    <li class="list-group-item">Email: {{ user.email }}</li>
+  </ul>
+</div>
