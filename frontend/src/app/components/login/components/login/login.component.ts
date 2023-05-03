@@ -79,15 +79,12 @@ export class LoginComponent implements AfterViewInit {
 
     // * Auth User
     this._configService.authUser(user).subscribe((data: any) => {
-      // console.log(data);
-
-      if (!data.success) {
-        console.log(data.msg);
-        this.isAccount = true;
-        this.disableSubmit = true;
-      } else {
+      if (data.success) {
         console.log("You are now logged in and can edit dashboard");
         console.log(data);
+
+        // * Store User Data to LocalStorage
+        this._configService.storeUserData(data.token, data.user);
 
         // * Reset Modal Fields
         this.inputEmail = "";
@@ -97,7 +94,7 @@ export class LoginComponent implements AfterViewInit {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: "You are Succesfully Log In!",
+          title: "You are now Logged in!",
           showConfirmButton: false,
           timer: 1125,
         });
@@ -108,6 +105,10 @@ export class LoginComponent implements AfterViewInit {
             this._closeModal();
           }, 1000);
         })();
+      } else {
+        // console.log(data.msg);
+        this.isAccount = true;
+        this.disableSubmit = true;
       }
     });
   };
