@@ -2,8 +2,9 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { DashboardModule } from "./components/dashboard/dashboard.module";
-import { LoginModule } from "./components/login/login.module";
 import { RegisterModule } from "./components/register/register.module";
+import { LoginModule } from "./components/login/login.module";
+import { ProfileModule } from "./components/profile/profile.module";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
@@ -14,9 +15,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule,
-    RegisterModule,
     DashboardModule,
+    RegisterModule,
+    LoginModule,
+    ProfileModule,
     BrowserAnimationsModule,
     HttpClientModule,
   ],

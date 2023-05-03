@@ -52,8 +52,8 @@ export class LoginComponent implements AfterViewInit {
     this._modalService.hide();
   };
 
-  public navigateLogin = (): void => {
-    this._router.navigate(["/login"]);
+  public onGoToDashboard = (): void => {
+    this._router.navigate(["/dashboard"]);
   };
 
   public navigateRegister = (): void => {
@@ -101,7 +101,7 @@ export class LoginComponent implements AfterViewInit {
 
         (() => {
           setTimeout(() => {
-            this._router.navigate(["/dashboard"]);
+            this._router.navigate(["/profile"]);
             this._closeModal();
           }, 1000);
         })();

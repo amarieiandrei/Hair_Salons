@@ -32,11 +32,11 @@
         letter-spacing: 0.5px;
       }
 
-      &.logout {
+      &.login {
         margin-right: 4px;
         font-weight: 500;
       }
-      &.logout:hover {
+      &.login:hover {
         border-radius: 0.25rem;
         background-color: $hoverDashboard;
       }
