@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     const token = user.generateAuthToken();
     res.header("x-auth-token", token).json({
       success: true,
-      // token: "JWT " + token,
+      token: token,
       user: {
         id: user._id,
         name: user.name,

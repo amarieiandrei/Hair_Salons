@@ -38,10 +38,13 @@ export class ConfigService {
   };
 
   public getProfile = (): any => {
-    let headers = new HttpHeaders();
-    headers.append("Authorization", this._authToken);
-    headers.append("Content-Type", "application/json; charset=utf-8");
     this.loadToken();
+
+    const headers = new HttpHeaders({
+      "x-auth-token": this._authToken,
+    });
+    headers.append("Content-Type", "charset=UTF-8");
+
     return this._http
       .get(this._profileUrl, { headers: headers })
       .pipe(map((res) => res));
