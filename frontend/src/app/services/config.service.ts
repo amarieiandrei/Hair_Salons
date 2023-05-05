@@ -10,6 +10,7 @@ export class ConfigService {
   private _usersUrl = "http://localhost:5000/api/users";
   private _authUrl = "http://localhost:5000/api/auth";
   private _profileUrl = "http://localhost:5000/api/profile";
+  private _hairsalonsUrl = "http://localhost:5000/api/hairsalons";
 
   // * Fields
   private _authToken!: any;
@@ -67,5 +68,15 @@ export class ConfigService {
     this._authToken = null;
     this._user = null;
     localStorage.clear();
+  };
+
+  public getHairsalons = (): any => {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json; charset=utf-8",
+    });
+
+    return this._http
+      .get(this._hairsalonsUrl, { headers: headers })
+      .pipe(map((res) => res));
   };
 }

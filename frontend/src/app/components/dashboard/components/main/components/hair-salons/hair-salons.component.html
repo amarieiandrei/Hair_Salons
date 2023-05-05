@@ -1,26 +1,30 @@
 <div
-  *ngFor="let card of cards"
+  *ngFor="let hairsalon of hairsalons; let index = index"
   class="hair-salon"
   [ngClass]="isHideMap === false ? 'hair-salon' : 'hair-salon-custom'"
 >
   <div class="hair-salon__header">
     <div class="header__slides-container">
-      <app-image-slider [slides]="slides"></app-image-slider>
+      <app-image-slider [slides]="hairsalon.slides"></app-image-slider>
     </div>
 
     <div class="header__content">
-      <h5 class="content__header">Arta Beauty Clinic</h5>
+      <h5 class="content__header">{{ hairsalon.name }}</h5>
       <div class="content__container">
-        <app-rating-slider></app-rating-slider>
-        <div class="container__reviews">{{ reviews }} reviews</div>
+        <app-rating-slider [rating]="hairsalon.rating"></app-rating-slider>
+        <div class="container__reviews">{{ hairsalon.reviews }} reviews</div>
       </div>
       <div class="content__container">
         <div class="container__location">
-          {{ location }}
+          {{ hairsalon.location }}
         </div>
-        <div class="container__show-on-map">
+        <button
+          (click)="onShowOnMapClicked(index)"
+          type="button"
+          class="container__show-on-map"
+        >
           <fa-icon [icon]="faMapLocationDot"></fa-icon> Show on map
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -28,13 +32,18 @@
   <div class="hair-salon__line"></div>
 
   <div class="hair-salon__details">
-    <span class="details__text">{{ details }}</span>
+    <span class="details__text">{{ hairsalon.details.text }}</span>
     <fa-icon
-      (click)="showDetails()"
-      [ngClass]="isDetails ? 'iconDetailsTop' : 'iconDetailsBottom'"
+      (click)="showDetails(index)"
+      [ngClass]="
+        hairsalon.details.isDetails ? 'iconDetailsTop' : 'iconDetailsBottom'
+      "
       [icon]="faGreaterThan"
     ></fa-icon>
   </div>
 
-  <app-details *ngIf="isDetails"></app-details>
+  <app-details
+    [program]="hairsalon.program"
+    *ngIf="hairsalon.details.isDetails"
+  ></app-details>
 </div>

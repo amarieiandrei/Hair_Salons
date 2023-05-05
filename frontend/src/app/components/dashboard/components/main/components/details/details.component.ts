@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-details",
@@ -6,5 +6,8 @@ import { Component } from "@angular/core";
   styleUrls: ["./details.component.scss"],
 })
 export class DetailsComponent {
-  date: Date = new Date();
+  // * @Input() decorator
+  @Input() program!: any;
+
+  constructor() {}
 }

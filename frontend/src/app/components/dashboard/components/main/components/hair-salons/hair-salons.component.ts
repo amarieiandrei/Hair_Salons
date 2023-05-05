@@ -1,41 +1,51 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import {
   faGreaterThan,
   faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { ImageSliderInterface } from "../image-slider/types/image-slider.interface";
+import { ConfigService } from "src/app/services/config.service";
 
 @Component({
   selector: "app-hair-salons",
   templateUrl: "./hair-salons.component.html",
   styleUrls: ["./hair-salons.component.scss"],
 })
-export class HairSalonsComponent {
-  // ! Icons
+export class HairSalonsComponent implements OnInit {
+  // * Icons
   faGreaterThan = faGreaterThan;
   faMapLocationDot = faMapLocationDot;
 
-  // ! Fields
+  // * @Input() Decorator
   @Input() isHideMap = false;
-  details: string = "Details";
-  isDetails: boolean = false;
-  location: string = "Romania, Bucharest";
-  reviews: number = 0;
-  cards: Array<any> = [1, 2, 3, 4];
-  slides: ImageSliderInterface[] = [
-    {
-      url: "/assets/dashboard/salon1.jpeg",
-      title: "salon1",
-    },
-    { url: "/assets/dashboard/salon2.jpg", title: "salon2" },
-    { url: "/assets/dashboard/salon3.avif", title: "salon3" },
-    { url: "/assets/dashboard/salon4.jpg", title: "salon4" },
-  ];
 
-  constructor() {}
+  // * Fields
+  public hairsalons!: Array<any>;
 
-  showDetails() {
-    this.isDetails = !this.isDetails;
-    !this.isDetails ? (this.details = "Details") : (this.details = "Close");
+  constructor(private _configService: ConfigService) {}
+
+  ngOnInit(): void {
+    this._configService.getHairsalons().subscribe(
+      (hairsalons: any) => {
+        this.hairsalons = hairsalons;
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
+
+  public showDetails = (index: number): void => {
+    const isDetails = this.hairsalons[index].details.isDetails;
+
+    this.hairsalons[index].details.isDetails =
+      !this.hairsalons[index].details.isDetails;
+
+    !isDetails
+      ? (this.hairsalons[index].details.text = "Close")
+      : (this.hairsalons[index].details.text = "Details");
+  };
+
+  public onShowOnMapClicked = (index: number): void => {
+    console.log(`Show on Map ${index}`);
+  };
 }

@@ -13,7 +13,7 @@ require("dotenv/config");
 const profile = require("./routes/profile");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
-const cardsRoute = require("./routes/cards");
+const hairsalons = require("./routes/hairsalons");
 
 // * Middlewares
 
@@ -26,7 +26,7 @@ app.use(morgan(":url :method"));
 app.use("/api/profile", profile);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
-app.use("/api/cards", cardsRoute);
+app.use("/api/hairsalons", hairsalons);
 
 // * Authentication
 

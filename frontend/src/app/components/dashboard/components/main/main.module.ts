@@ -12,6 +12,8 @@ import { ImageSliderComponent } from "./components/image-slider/image-slider.com
 import { RatingSliderComponent } from "./components/rating-slider/rating-slider.component";
 import { DetailsComponent } from "./components/details/details.component";
 
+import { ConfigService } from "src/app/services/config.service";
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -28,7 +30,7 @@ import { DetailsComponent } from "./components/details/details.component";
     FormsModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [ConfigService],
   exports: [MainComponent],
 })
 export class MainModule {}
