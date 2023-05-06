@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
+import { Component, EventEmitter, Output, HostListener } from "@angular/core";
 import {
   faCircle,
   faMagnifyingGlass,
@@ -10,6 +18,19 @@ import {
   selector: "app-section",
   templateUrl: "./section.component.html",
   styleUrls: ["./section.component.scss"],
+  animations: [
+    trigger("inputsAnimation", [
+      transition("* => *", [
+        query("input", style({ transform: "translateX(-25%)" })),
+        query(
+          "input",
+          stagger("300ms", [
+            animate("200ms", style({ transform: "translateX(0)" })),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
 export class SectionComponent {
   // * Icons
@@ -19,6 +40,12 @@ export class SectionComponent {
   public mapBtnIcon: any = faXmark;
 
   // * Fields
+  public searchName!: string;
+  public searchLocation!: string;
+  public searchDate!: string;
+
+  public isWhatWhereWhen: boolean = false;
+
   public mapBtnText: string = "Hide Map";
   items: Array<string> = [
     `Ladie's Haircuts`,
@@ -30,6 +57,7 @@ export class SectionComponent {
     `Beard Trimming & Shaving`,
     `Children's Haircuts`,
   ];
+
   // * Emit to main for hide google-map
   @Output() msgToSibling = new EventEmitter<any>();
   private _isMap: boolean = true;
@@ -61,4 +89,30 @@ export class SectionComponent {
   msgToMain() {
     this.msgToMainEvent.emit(this._showMap);
   }
+
+  public goToTop = (): void => {
+    // * For Safari
+    document.body.scrollTop = 0;
+    // * For Chrome, Firefox, IE and Opera
+    document.documentElement.scrollTop = 0;
+  };
+
+  public onSearchCliked = () => {
+    this.isWhatWhereWhen = true;
+
+    this.goToTop();
+
+    setTimeout(() => {
+      this.isWhatWhereWhen = true;
+    }, 800);
+  };
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    this.isWhatWhereWhen = false;
+  }
+
+  public onKeyup = (value: string): void => {
+    console.log(value);
+  };
 }

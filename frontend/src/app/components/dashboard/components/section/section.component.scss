@@ -5,6 +5,11 @@
   font-family: $poppins;
 }
 
+input:focus {
+  border: none;
+  box-shadow: none;
+}
+
 .container-fluid {
   background-color: $btnDashboard;
   padding: 2vh 8vw 2vh 8vw;
@@ -22,6 +27,7 @@
 
       .search-btn {
         display: flex;
+        align-items: center;
         border-radius: 0.25rem;
         background-color: #fff;
         box-shadow: $shadowDashboard;
@@ -70,6 +76,38 @@
         }
       }
 
+      .what-where-when {
+        display: grid;
+        gap: 5px;
+        width: 244.29px;
+
+        .www__container {
+          display: flex;
+          align-items: center;
+          border-radius: 0.25rem;
+          background-color: #fff;
+          box-shadow: $shadowDashboard;
+          font-size: 14px;
+          font-weight: 600;
+
+          .container__search-glass {
+            display: grid;
+            place-content: center;
+            background-color: inherit;
+            color: $biSearch;
+            font-size: 20px;
+            margin: 0 5px 0 8px;
+            cursor: pointer;
+          }
+
+          .container__input {
+            border-radius: 0.25rem;
+            padding: 8px 12px 8px 8px;
+            width: 100%;
+          }
+        }
+      }
+
       .container__blur {
         background-color: $blurDashboard;
         box-shadow: $boxShadowDashboard;
@@ -97,6 +135,7 @@
       border: 2px solid #fff;
       background-color: inherit;
       text-decoration: none;
+      max-height: 54px;
 
       .hidemap-btn__container {
         display: flex;

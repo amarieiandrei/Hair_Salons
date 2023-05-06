@@ -1,7 +1,12 @@
 <div class="container-fluid">
   <ul class="nav section">
     <div class="section__container">
-      <a class="search-btn">
+      <button
+        *ngIf="!isWhatWhereWhen"
+        (click)="onSearchCliked()"
+        type="button"
+        class="search-btn"
+      >
         <fa-icon [icon]="faMagnifyingGlass" class="search-glass"></fa-icon>
         <div>
           <p class="search-btn__header">Hairdressers and Hair Salons</p>
@@ -11,7 +16,39 @@
             <p class="footer__text">Any Date</p>
           </div>
         </div>
-      </a>
+      </button>
+
+      <div *ngIf="isWhatWhereWhen">
+        <div [@inputsAnimation] class="what-where-when">
+          <div class="www__container">
+            <fa-icon
+              [icon]="faMagnifyingGlass"
+              class="container__search-glass"
+            ></fa-icon>
+            <input
+              class="container__input"
+              (keyup)="onKeyup(searchName)"
+              [(ngModel)]="searchName"
+              type="text"
+              placeholder="Search for Salon Name"
+            />
+          </div>
+          <div class="www__container">
+            <fa-icon
+              [icon]="faMagnifyingGlass"
+              class="container__search-glass"
+            ></fa-icon>
+            <input
+              class="container__input"
+              (keyup)="onKeyup(searchLocation)"
+              [(ngModel)]="searchLocation"
+              type="text"
+              placeholder="Search for Salon Location"
+            />
+          </div>
+        </div>
+      </div>
+
       <div class="container__blur">
         <p class="content">Hairdressers and hair salons</p>
       </div>

@@ -27,6 +27,8 @@ export class HairSalonsComponent implements OnInit {
     this._configService.getHairsalons().subscribe(
       (hairsalons: any) => {
         this.hairsalons = hairsalons;
+
+        // console.log(this.hairsalons);
       },
       (err: any) => {
         console.log(err);
