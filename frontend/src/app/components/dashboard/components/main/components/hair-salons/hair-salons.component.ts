@@ -4,6 +4,7 @@ import {
   faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { ConfigService } from "src/app/services/config.service";
+import { LoaderService } from "src/app/services/loader.service";
 
 @Component({
   selector: "app-hair-salons",
@@ -19,16 +20,25 @@ export class HairSalonsComponent implements OnInit {
   @Input() isHideMap = false;
 
   // * Fields
+  public showLoader$ = this._loaderService.loadingAction$;
+
   public hairsalons!: Array<any>;
 
-  constructor(private _configService: ConfigService) {}
+  constructor(
+    private _configService: ConfigService,
+    private _loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this._loaderService.showLoader();
+    }, 0);
+
     this._configService.getHairsalons().subscribe(
       (hairsalons: any) => {
         this.hairsalons = hairsalons;
-
-        // console.log(this.hairsalons);
+        localStorage.setItem("hairsalons", JSON.stringify(this.hairsalons));
+        this._loaderService.hideLoader();
       },
       (err: any) => {
         console.log(err);

@@ -21,7 +21,7 @@ import {
   animations: [
     trigger("inputsAnimation", [
       transition("* => *", [
-        query("input", style({ transform: "translateX(-25%)" })),
+        query("input", style({ transform: "translateX(-15%)" })),
         query(
           "input",
           stagger("300ms", [
@@ -40,9 +40,11 @@ export class SectionComponent {
   public mapBtnIcon: any = faXmark;
 
   // * Fields
+  public disableSearchName: boolean = false;
+  public disableSearchLocation: boolean = false;
+
   public searchName!: string;
   public searchLocation!: string;
-  public searchDate!: string;
 
   public isWhatWhereWhen: boolean = false;
 
@@ -112,7 +114,31 @@ export class SectionComponent {
     this.isWhatWhereWhen = false;
   }
 
-  public onKeyup = (value: string): void => {
-    console.log(value);
+  public onSearchingName = (name: string): void => {
+    console.log("Search by: ", name);
+
+    this.searchName = "";
+  };
+
+  public onSearchingLocation = (location: string): void => {
+    console.log("Search by: ", location);
+
+    this.searchLocation = "";
+  };
+
+  public onFocusName = (): void => {
+    this.disableSearchLocation = true;
+  };
+
+  public onFocusoutName = (): void => {
+    this.disableSearchLocation = false;
+  };
+
+  public onFocusLocation = (): void => {
+    this.disableSearchName = true;
+  };
+
+  public onFocusoutLocation = (): void => {
+    this.disableSearchName = false;
   };
 }

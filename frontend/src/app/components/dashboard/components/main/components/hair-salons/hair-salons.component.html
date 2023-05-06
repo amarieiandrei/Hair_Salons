@@ -1,3 +1,7 @@
+<div *ngIf="showLoader$ | async as showLoader" class="loader">
+  <app-loading *ngIf="showLoader"></app-loading>
+</div>
+
 <div
   *ngFor="let hairsalon of hairsalons; let index = index"
   class="hair-salon"

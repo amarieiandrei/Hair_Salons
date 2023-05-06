@@ -90,6 +90,11 @@ input:focus {
           font-size: 14px;
           font-weight: 600;
 
+          .fa-disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+
           .container__search-glass {
             display: grid;
             place-content: center;
@@ -163,6 +168,7 @@ input:focus {
       border: 2px solid #fff;
       background-color: inherit;
       text-decoration: none;
+      max-height: 54px;
 
       .map-btn__container {
         display: flex;

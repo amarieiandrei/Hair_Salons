@@ -22,12 +22,16 @@
         <div [@inputsAnimation] class="what-where-when">
           <div class="www__container">
             <fa-icon
+              [ngClass]="disableSearchName ? 'fa-disabled' : ''"
               [icon]="faMagnifyingGlass"
               class="container__search-glass"
             ></fa-icon>
             <input
+              (focusout)="onFocusoutName()"
+              (focus)="onFocusName()"
+              [disabled]="disableSearchName"
               class="container__input"
-              (keyup)="onKeyup(searchName)"
+              (change)="onSearchingName(searchName)"
               [(ngModel)]="searchName"
               type="text"
               placeholder="Search for Salon Name"
@@ -35,12 +39,16 @@
           </div>
           <div class="www__container">
             <fa-icon
+              [ngClass]="disableSearchLocation ? 'fa-disabled' : ''"
               [icon]="faMagnifyingGlass"
               class="container__search-glass"
             ></fa-icon>
             <input
+              (focusout)="onFocusoutLocation()"
+              (focus)="onFocusLocation()"
+              [disabled]="disableSearchLocation"
               class="container__input"
-              (keyup)="onKeyup(searchLocation)"
+              (change)="onSearchingLocation(searchLocation)"
               [(ngModel)]="searchLocation"
               type="text"
               placeholder="Search for Salon Location"

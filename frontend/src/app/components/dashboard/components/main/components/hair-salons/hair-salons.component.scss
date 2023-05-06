@@ -1,6 +1,11 @@
 @import "../../../../../../../colors.scss";
 @import "../../../../../../../properties.scss";
 
+.loader {
+  display: grid;
+  place-content: center;
+}
+
 .hair-salon {
   cursor: pointer;
   background-color: $cardDashboard;

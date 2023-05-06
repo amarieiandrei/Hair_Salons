@@ -6,9 +6,9 @@ import { RegisterModule } from "./components/register/register.module";
 import { LoginModule } from "./components/login/login.module";
 import { ProfileModule } from "./components/profile/profile.module";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [AppComponent],

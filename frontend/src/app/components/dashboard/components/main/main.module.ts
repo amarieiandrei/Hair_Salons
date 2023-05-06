@@ -11,8 +11,10 @@ import { HairSalonsComponent } from "./components/hair-salons/hair-salons.compon
 import { ImageSliderComponent } from "./components/image-slider/image-slider.component";
 import { RatingSliderComponent } from "./components/rating-slider/rating-slider.component";
 import { DetailsComponent } from "./components/details/details.component";
+import { LoadingComponent } from "../loading/loading.component";
 
 import { ConfigService } from "src/app/services/config.service";
+import { LoaderService } from "src/app/services/loader.service";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { ConfigService } from "src/app/services/config.service";
     ImageSliderComponent,
     RatingSliderComponent,
     DetailsComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,7 @@ import { ConfigService } from "src/app/services/config.service";
     FormsModule,
     FontAwesomeModule,
   ],
-  providers: [ConfigService],
+  providers: [ConfigService, LoaderService],
   exports: [MainComponent],
 })
 export class MainModule {}
