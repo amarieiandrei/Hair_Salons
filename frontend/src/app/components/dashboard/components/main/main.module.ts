@@ -15,6 +15,7 @@ import { LoadingComponent } from "../loading/loading.component";
 
 import { ConfigService } from "src/app/services/config.service";
 import { LoaderService } from "src/app/services/loader.service";
+import { HairsalonsService } from "src/app/services/hairsalons.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { LoaderService } from "src/app/services/loader.service";
     FormsModule,
     FontAwesomeModule,
   ],
-  providers: [ConfigService, LoaderService],
+  providers: [ConfigService, LoaderService, HairsalonsService],
   exports: [MainComponent],
 })
 export class MainModule {}

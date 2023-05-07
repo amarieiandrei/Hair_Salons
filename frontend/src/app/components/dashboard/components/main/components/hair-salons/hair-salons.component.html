@@ -3,6 +3,22 @@
 </div>
 
 <div
+  *ngIf="isSearchedHairsalons"
+  class="alert alert-danger alert-searched-hairsalons"
+  role="alert"
+>
+  No Hairsalon by that Name was found in our Records!
+</div>
+
+<div
+  *ngIf="isSearchedHairsalonsByLocation"
+  class="alert alert-danger alert-searched-hairsalons"
+  role="alert"
+>
+  No Hairsalon by that Location was found in our Records!
+</div>
+
+<div
   *ngFor="let hairsalon of hairsalons; let index = index"
   class="hair-salon"
   [ngClass]="isHideMap === false ? 'hair-salon' : 'hair-salon-custom'"

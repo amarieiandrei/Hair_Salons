@@ -10,6 +10,7 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { SectionComponent } from "./components/section/section.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { HairsalonsService } from "src/app/services/hairsalons.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { FooterComponent } from "./components/footer/footer.component";
     BrowserAnimationsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [HairsalonsService],
   exports: [DashboardComponent],
 })
 export class DashboardModule {}

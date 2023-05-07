@@ -1,7 +1,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <app-hair-salons [isHideMap]="isHideMap"></app-hair-salons>
+      <app-hair-salons
+        [searchedHairsalonsByLocation]="hairsalonsByLocation"
+        [isSearchedByNameTouched]="isSearchedByNameTouched"
+        [searchedHairsalons]="hairsalons"
+        [isHideMap]="isHideMap"
+      ></app-hair-salons>
     </div>
 
     <!-- <div *ngIf="showMap" class="col google-map-responsive">

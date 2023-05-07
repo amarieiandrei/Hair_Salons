@@ -7,6 +7,9 @@ import { Component } from "@angular/core";
 export class DashboardComponent {
   isHideMap = false;
   showMap!: boolean;
+  public hairsalons!: Array<any>;
+  public isSearchedByNameTouched!: boolean;
+  public hairsalonsByLocation!: Array<any>;
 
   fwdMsgToSib2($event: any) {
     this.isHideMap = $event;
@@ -15,4 +18,16 @@ export class DashboardComponent {
   fwdMsgToMain2($event: any) {
     this.showMap = $event;
   }
+
+  public searchedHairsalons = ($event: any) => {
+    this.hairsalons = $event;
+  };
+
+  public searchedHairsalonsByLocation = ($event: any) => {
+    this.hairsalonsByLocation = $event;
+  };
+
+  public searchedByNameTouched = ($event: any): void => {
+    this.isSearchedByNameTouched = $event;
+  };
 }

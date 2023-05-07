@@ -9,6 +9,9 @@ export class MainComponent {
   // * Fields
   @Input() isHideMap = false;
   @Input() showMap!: boolean;
+  @Input() hairsalons!: Array<any>;
+  @Input() hairsalonsByLocation!: Array<any>;
+  @Input() isSearchedByNameTouched!: boolean;
 
   constructor() {}
 }

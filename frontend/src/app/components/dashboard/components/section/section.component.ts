@@ -13,6 +13,7 @@ import {
   faXmark,
   faMap,
 } from "@fortawesome/free-solid-svg-icons";
+import { HairsalonsService } from "src/app/services/hairsalons.service";
 
 @Component({
   selector: "app-section",
@@ -40,6 +41,8 @@ export class SectionComponent {
   public mapBtnIcon: any = faXmark;
 
   // * Fields
+  public isSearchedByNameTouched: boolean = false;
+
   public disableSearchName: boolean = false;
   public disableSearchLocation: boolean = false;
 
@@ -60,6 +63,11 @@ export class SectionComponent {
     `Children's Haircuts`,
   ];
 
+  // * @Output(), EventEmitter => SearchedHairsalons by Name.
+  @Output() searchedHairsalonsEvent = new EventEmitter<any>();
+  @Output() searchedByNameTouchedEvent = new EventEmitter<any>();
+  @Output() searchedHairsalonsByLocationEvent = new EventEmitter<any>();
+
   // * Emit to main for hide google-map
   @Output() msgToSibling = new EventEmitter<any>();
   private _isMap: boolean = true;
@@ -68,7 +76,7 @@ export class SectionComponent {
   @Output() msgToMainEvent = new EventEmitter<any>();
   private _showMap: boolean = false;
 
-  constructor() {}
+  constructor(private _hairsalonsService: HairsalonsService) {}
 
   public toogleMap = (): void => {
     this._isMap = !this._isMap;
@@ -115,13 +123,31 @@ export class SectionComponent {
   }
 
   public onSearchingName = (name: string): void => {
-    console.log("Search by: ", name);
+    const hairsalons = this._hairsalonsService.loadHairsalonsFromLocalStorage();
+
+    const searchedHairsalons = hairsalons.filter((hairsalon) => {
+      return hairsalon.name.toLocaleLowerCase() === name.toLocaleLowerCase();
+    });
+
+    this.searchedHairsalonsEvent.emit(searchedHairsalons);
+    this.isSearchedByNameTouched = true;
+    this.searchedByNameTouchedEvent.emit(this.isSearchedByNameTouched);
 
     this.searchName = "";
   };
 
   public onSearchingLocation = (location: string): void => {
-    console.log("Search by: ", location);
+    const hairsalons = this._hairsalonsService.loadHairsalonsFromLocalStorage();
+
+    const searchedHairsalonsByLocation = hairsalons.filter((hairsalon) => {
+      const city =
+        this._hairsalonsService.extractCityFromHairsalonLocation(hairsalon);
+      return city.toLocaleLowerCase() === location.toLocaleLowerCase();
+    });
+
+    this.searchedHairsalonsByLocationEvent.emit(searchedHairsalonsByLocation);
+    this.isSearchedByNameTouched = false;
+    this.searchedByNameTouchedEvent.emit(this.isSearchedByNameTouched);
 
     this.searchLocation = "";
   };

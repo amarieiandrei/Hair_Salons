@@ -6,6 +6,24 @@
   place-content: center;
 }
 
+.alert-searched-hairsalons {
+  display: grid;
+  place-content: center;
+  text-align: center;
+
+  background-color: $cardDashboard;
+  color: #fff;
+  width: 100%;
+  margin: 0 auto;
+
+  border: 1px solid $btnLogin;
+  box-shadow: 0 0 3px $btnLogin;
+  outline-offset: 0px;
+  outline: none;
+
+  margin-bottom: 20px;
+}
+
 .hair-salon {
   cursor: pointer;
   background-color: $cardDashboard;
@@ -109,6 +127,9 @@
   .hair-salon {
     margin: 0 auto;
     margin-bottom: 50px;
+    width: 60%;
+  }
+  .alert-searched-hairsalons {
     width: 60%;
   }
 }
