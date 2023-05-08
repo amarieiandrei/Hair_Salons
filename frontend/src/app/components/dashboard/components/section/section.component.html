@@ -40,7 +40,7 @@
           <div class="www__container">
             <fa-icon
               [ngClass]="disableSearchLocation ? 'fa-disabled' : ''"
-              [icon]="faMagnifyingGlass"
+              [icon]="faLocationDot"
               class="container__search-glass"
             ></fa-icon>
             <input
@@ -54,10 +54,27 @@
               placeholder="Search for Salon Location"
             />
           </div>
+          <div class="www__container">
+            <fa-icon
+              [ngClass]="disableSearchCalendar ? 'fa-disabled' : ''"
+              [icon]="faCalendarDay"
+              class="container__search-glass"
+            ></fa-icon>
+            <input
+              (focusout)="onFocusoutCalendar()"
+              (focus)="onFocusCalendar()"
+              [disabled]="disableSearchCalendar"
+              class="container__input"
+              (change)="onSearchingCalendar(searchCalendar)"
+              [(ngModel)]="searchCalendar"
+              type="text"
+              placeholder="Search for Salon Program"
+            />
+          </div>
         </div>
       </div>
 
-      <div class="container__blur">
+      <div class="container__blur" id="section-title-blur">
         <p class="content">Hairdressers and hair salons</p>
       </div>
     </div>
