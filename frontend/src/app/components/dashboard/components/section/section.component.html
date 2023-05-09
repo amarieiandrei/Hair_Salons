@@ -60,16 +60,96 @@
               [icon]="faCalendarDay"
               class="container__search-glass"
             ></fa-icon>
+
             <input
-              (focusout)="onFocusoutCalendar()"
+              readonly
+              [value]="chooseProgramDay"
+              (click)="onChooseProgramClicked()"
               (focus)="onFocusCalendar()"
               [disabled]="disableSearchCalendar"
               class="container__input"
-              (change)="onSearchingCalendar(searchCalendar)"
-              [(ngModel)]="searchCalendar"
+              [(ngModel)]="chooseProgramDay"
               type="text"
               placeholder="Search for Salon Program"
             />
+
+            <fa-icon
+              (click)="handleRestartField()"
+              *ngIf="isProgram"
+              class="container__faXmarkIcon"
+              [icon]="faXmarkIcon"
+            ></fa-icon>
+
+            <div *ngIf="isProgram" class="choose-program-container">
+              <div class="choose-program">
+                <fa-icon class="program__icon" [icon]="faCalendarDay"></fa-icon>
+                <h6 class="program__title">Choose Date</h6>
+                <fa-icon
+                  (click)="onFocusoutCalendar()"
+                  class="program__exit"
+                  [icon]="faXmarkIcon"
+                ></fa-icon>
+              </div>
+
+              <div class="row choose-date-row">
+                <div class="col container__col top">
+                  <button
+                    (click)="onClickToday()"
+                    class="col__btn"
+                    type="button"
+                  >
+                    Today
+                  </button>
+                  <button
+                    (click)="onClickTomorrow()"
+                    class="col__btn"
+                    type="button"
+                  >
+                    Tomorrow
+                  </button>
+                </div>
+                <div class="col container__col">
+                  <button
+                    (click)="onClickAnyDate()"
+                    class="col__btn"
+                    type="button"
+                  >
+                    Any Date
+                  </button>
+                  <input
+                    [(ngModel)]="datePickerValue"
+                    class="col__btn datepicker"
+                    type="text"
+                    placeholder="Choose Date"
+                    bsDatepicker
+                    placement="right"
+                    [bsConfig]="{
+                      dateInputFormat: 'DD/MM/YYYY'
+                    }"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <div class="choose-program">
+                <fa-icon class="program__icon" [icon]="faClock"></fa-icon>
+                <h6 class="program__title">Choose Time</h6>
+              </div>
+
+              <timepicker
+                class="container__timepicker"
+                [showMeridian]="isMeridian"
+                [(ngModel)]="chooseProgramTime"
+              ></timepicker>
+
+              <button
+                (click)="onDoneProgram(); onFocusoutCalendar()"
+                class="container__choose-program-done"
+                type="button"
+              >
+                Done
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -5,6 +5,8 @@ import { MainModule } from "./components/main/main.module";
 import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
+import { TimepickerModule } from "ngx-bootstrap/timepicker";
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { HeaderComponent } from "./components/header/header.component";
@@ -26,6 +28,8 @@ import { HairsalonsService } from "src/app/services/hairsalons.service";
     RouterModule,
     BrowserAnimationsModule,
     FormsModule,
+    TimepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(),
   ],
   providers: [HairsalonsService],
   exports: [DashboardComponent],

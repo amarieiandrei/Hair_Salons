@@ -46,7 +46,6 @@ export class HairSalonsComponent implements OnInit, OnChanges {
   }
 
   // ngOnInit(): void {}
-
   ngOnInit(): void {
     setTimeout(() => {
       this._loaderService.showLoader();

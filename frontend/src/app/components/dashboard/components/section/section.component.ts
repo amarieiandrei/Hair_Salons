@@ -14,8 +14,10 @@ import {
   faMap,
   faLocationDot,
   faCalendarDay,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { HairsalonsService } from "src/app/services/hairsalons.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-section",
@@ -37,6 +39,8 @@ import { HairsalonsService } from "src/app/services/hairsalons.service";
 })
 export class SectionComponent {
   // * Icons
+  public faXmarkIcon = faXmark;
+  public faClock = faClock;
   public faCalendarDay = faCalendarDay;
   public faLocationDot = faLocationDot;
   public faMagnifyingGlass = faMagnifyingGlass;
@@ -45,6 +49,13 @@ export class SectionComponent {
   public mapBtnIcon: any = faXmark;
 
   // * Fields
+  public datePickerValue!: any;
+  public isMeridian: boolean = false;
+  public chooseProgramDay!: string;
+  public chooseProgramTime: Date = new Date();
+
+  public isProgram: boolean = false;
+
   public wwwMenuOpen!: string;
 
   public isSearchedByNameTouched: boolean = false;
@@ -55,7 +66,6 @@ export class SectionComponent {
 
   public searchName!: string;
   public searchLocation!: string;
-  public searchCalendar!: any;
 
   public isWhatWhereWhen: boolean = false;
 
@@ -128,17 +138,21 @@ export class SectionComponent {
   @HostListener("window:scroll", [])
   onWindowScroll() {
     this.isWhatWhereWhen = false;
+    this.isProgram = false;
+    this.datePickerValue = "";
+
+    this.onFocusoutCalendar();
 
     let title = document.getElementById("section-title-blur");
 
     // * For Safari
     if (title !== null && document.body.scrollTop === 0) {
-      title.style.transitionDuration = "1s";
+      title.style.transitionDuration = ".8s";
       title.style.transform = "translate(0)";
     }
     // * For Chrome, Firefox, IE and Opera
     if (title !== null && document.documentElement.scrollTop === 0) {
-      title.style.transitionDuration = "1s";
+      title.style.transitionDuration = ".8s";
       title.style.transform = "translate(0)";
     }
 
@@ -147,7 +161,7 @@ export class SectionComponent {
         document.body.scrollTop !== 0 ||
         document.documentElement.scrollTop !== 0
       ) {
-        title.style.transitionDuration = "1s";
+        title.style.transitionDuration = ".8s";
         title.style.transform = "translate(3ch, 7.5mm)";
       }
     }
@@ -187,10 +201,8 @@ export class SectionComponent {
     this.searchLocation = "";
   };
 
-  public onSearchingCalendar = (program: any): void => {
-    console.log("Handle on searching Calendar");
-
-    this.searchCalendar = "";
+  public onSearchingCalendar = (day: any, hours: any): void => {
+    console.log(day, hours);
   };
 
   public onFocusName = (): void => {
@@ -216,10 +228,60 @@ export class SectionComponent {
   public onFocusCalendar = (): void => {
     this.disableSearchName = true;
     this.disableSearchLocation = true;
+
+    this.datePickerValue = "";
+    this.chooseProgramDay = "";
   };
 
   public onFocusoutCalendar = (): void => {
     this.disableSearchName = false;
     this.disableSearchLocation = false;
+
+    this.isProgram = false;
+    this.chooseProgramDay = "";
+  };
+
+  public onChooseProgramClicked = (): void => {
+    this.isProgram = true;
+  };
+
+  public onClickToday = (): void => {
+    this.chooseProgramDay = moment().format("dddd");
+    this.datePickerValue = "";
+  };
+
+  public onClickTomorrow = (): void => {
+    this.chooseProgramDay = moment().add(1, "days").format("dddd");
+    this.datePickerValue = "";
+  };
+
+  public onClickAnyDate = (): void => {
+    this.chooseProgramDay = "Any Date";
+    this.datePickerValue = "";
+  };
+
+  public onDoneProgram = (): void => {
+    const hours = moment(this.chooseProgramTime).format("hh:mm");
+
+    const formatedDatePickerValue = moment(this.datePickerValue).format("dddd");
+
+    if (
+      formatedDatePickerValue.localeCompare("Monday") === 0 ||
+      formatedDatePickerValue.localeCompare("Tuesday") === 0 ||
+      formatedDatePickerValue.localeCompare("Wednesday") === 0 ||
+      formatedDatePickerValue.localeCompare("Thursday") === 0 ||
+      formatedDatePickerValue.localeCompare("Friday") === 0 ||
+      formatedDatePickerValue.localeCompare("Saturday") === 0 ||
+      formatedDatePickerValue.localeCompare("Sunday") === 0
+    ) {
+      this.chooseProgramDay = formatedDatePickerValue;
+    }
+
+    this.onSearchingCalendar(this.chooseProgramDay, hours);
+  };
+
+  public handleRestartField = (): void => {
+    this.chooseProgramDay = "";
+    this.datePickerValue = "";
   };
 }

@@ -110,6 +110,99 @@ input:focus {
             padding: 8px 12px 8px 8px;
             width: 100%;
           }
+
+          .container__faXmarkIcon {
+            margin-right: 10px;
+            cursor: pointer;
+            color: $biSearch;
+            font-size: 16px;
+          }
+
+          .choose-program-container {
+            position: absolute;
+            margin-top: 387.5px;
+            width: 244.28px;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            box-shadow: $boxShadowDashboard;
+            background-color: #fff;
+            font-weight: 600;
+            color: $biSearch;
+            gap: 5px;
+            padding: 15px;
+            border-radius: 0.25rem;
+
+            border: 1.5px solid $btnLogin;
+            box-shadow: 0 0 7px $btnLogin;
+            outline-offset: 0px;
+            outline: none;
+
+            .choose-program {
+              display: flex;
+              align-items: center;
+
+              .program__icon {
+                font-size: x-large;
+                margin-right: 7.25px;
+              }
+              .program__title {
+                margin: 0;
+              }
+
+              .program__exit {
+                position: absolute;
+                right: 15px;
+                cursor: pointer;
+                font-size: 18px;
+                color: $biSearch;
+              }
+            }
+
+            .choose-date-row {
+              margin: 10px 5px;
+
+              .container__col {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+
+                &.top {
+                  margin-bottom: 15px;
+                }
+
+                .col__btn {
+                  width: 100%;
+                  padding: 4px;
+                  color: $biSearch;
+                  border-radius: 0.25rem;
+
+                  border: 1px solid $btnLogin;
+                  box-shadow: 0 0 3px $btnLogin;
+                  outline-offset: 0px;
+                  outline: none;
+                }
+              }
+            }
+
+            .container__timepicker {
+              margin: 0 auto;
+            }
+
+            .container__choose-program-done {
+              border-radius: 0.25rem;
+              background-color: $btnDashboard;
+              color: #fff;
+              font-weight: 600;
+              height: 40px;
+              letter-spacing: 1px;
+              font-size: 1rem;
+            }
+            .container__choose-program-done:hover {
+              transition-duration: 0.25s, 20s;
+              box-shadow: 5px 5px 5px #000;
+            }
+          }
         }
       }
 
@@ -257,6 +350,10 @@ input:focus {
   #section__map-btn {
     display: none !important;
   }
+
+  .datepicker {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -266,5 +363,25 @@ input:focus {
 
   .section__map-btn {
     display: block !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .www__container {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .choose-program-container {
+    width: 170px !important;
+    margin-top: 480px !important;
+  }
+
+  .program__exit {
+    display: none;
+  }
+
+  .container__col {
+    flex-direction: column !important;
   }
 }
