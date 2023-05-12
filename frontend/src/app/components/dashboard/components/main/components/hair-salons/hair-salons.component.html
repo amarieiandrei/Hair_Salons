@@ -19,6 +19,14 @@
 </div>
 
 <div
+  *ngIf="isSearchedHairsalonsByProgram"
+  class="alert alert-danger alert-searched-hairsalons"
+  role="alert"
+>
+  No Hairsalon by that Program was found in our Records!
+</div>
+
+<div
   *ngFor="let hairsalon of hairsalons; let index = index"
   class="hair-salon"
   [ngClass]="isHideMap === false ? 'hair-salon' : 'hair-salon-custom'"

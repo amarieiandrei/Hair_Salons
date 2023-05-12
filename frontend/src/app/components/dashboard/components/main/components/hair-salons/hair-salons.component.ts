@@ -22,8 +22,11 @@ export class HairSalonsComponent implements OnInit, OnChanges {
   @Input() searchedHairsalons!: Array<any>;
   @Input() isSearchedByNameTouched!: boolean;
   @Input() searchedHairsalonsByLocation!: Array<any>;
+  @Input() isSearchedByLocationTouched!: boolean;
+  @Input() searchedHairsalonsByProgram!: Array<any>;
 
   // * Fields
+  public isSearchedHairsalonsByProgram: boolean = false;
   public isSearchedHairsalonsByLocation: boolean = false;
   public isSearchedHairsalons: boolean = false;
 
@@ -38,10 +41,17 @@ export class HairSalonsComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnChanges(): void {
-    if (this.isSearchedByNameTouched === true) {
-      this.ngOnChangesSearchedHairsalons();
+    if (
+      this.isSearchedByNameTouched === false &&
+      this.isSearchedByLocationTouched === false
+    ) {
+      this.ngOnChangesSearchedHairsalonsByProgram();
     } else {
-      this.ngOnChangesSearchedHairsalonsByLocation();
+      if (this.isSearchedByNameTouched === true) {
+        this.ngOnChangesSearchedHairsalons();
+      } else {
+        this.ngOnChangesSearchedHairsalonsByLocation();
+      }
     }
   }
 
@@ -108,6 +118,31 @@ export class HairSalonsComponent implements OnInit, OnChanges {
           this._hairsalonsService.loadHairsalonsFromLocalStorage();
 
         this.isSearchedHairsalonsByLocation = false;
+      }, 1500);
+    }
+  };
+
+  public ngOnChangesSearchedHairsalonsByProgram = (): void => {
+    if (this.searchedHairsalonsByProgram !== undefined) {
+      setTimeout(() => {
+        this._loaderService.showLoader();
+      }, 0);
+
+      this.hairsalons = this.searchedHairsalonsByProgram;
+
+      setTimeout(() => {
+        this._loaderService.hideLoader();
+      }, 0);
+    }
+
+    if (this.searchedHairsalonsByProgram?.length === 0) {
+      this.isSearchedHairsalonsByProgram = true;
+
+      setTimeout(() => {
+        this.hairsalons =
+          this._hairsalonsService.loadHairsalonsFromLocalStorage();
+
+        this.isSearchedHairsalonsByProgram = false;
       }, 1500);
     }
   };

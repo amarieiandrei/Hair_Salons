@@ -10,8 +10,10 @@ export class MainComponent {
   @Input() isHideMap = false;
   @Input() showMap!: boolean;
   @Input() hairsalons!: Array<any>;
-  @Input() hairsalonsByLocation!: Array<any>;
   @Input() isSearchedByNameTouched!: boolean;
+  @Input() hairsalonsByLocation!: Array<any>;
+  @Input() isSearchedByLocationTouched!: boolean;
+  @Input() hairsalonsByProgram!: Array<any>;
 
   constructor() {}
 }

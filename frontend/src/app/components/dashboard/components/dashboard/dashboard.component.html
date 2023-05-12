@@ -1,5 +1,7 @@
 <app-header></app-header>
 <app-section
+  (searchedHairsalonsByProgramEvent)="searchedHairsalonsByProgram($event)"
+  (searchedByLocationTouchedEvent)="searchedByLocationTouched($event)"
   (searchedHairsalonsByLocationEvent)="searchedHairsalonsByLocation($event)"
   (searchedByNameTouchedEvent)="searchedByNameTouched($event)"
   (searchedHairsalonsEvent)="searchedHairsalons($event)"
@@ -7,6 +9,8 @@
   (msgToMainEvent)="fwdMsgToMain2($event)"
 ></app-section>
 <app-main
+  [hairsalonsByProgram]="hairsalonsByProgram"
+  [isSearchedByLocationTouched]="isSearchedByLocationTouched"
   [hairsalonsByLocation]="hairsalonsByLocation"
   [isSearchedByNameTouched]="isSearchedByNameTouched"
   [hairsalons]="hairsalons"

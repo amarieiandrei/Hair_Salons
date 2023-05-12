@@ -9,7 +9,9 @@ export class DashboardComponent {
   showMap!: boolean;
   public hairsalons!: Array<any>;
   public isSearchedByNameTouched!: boolean;
+  public isSearchedByLocationTouched!: boolean;
   public hairsalonsByLocation!: Array<any>;
+  public hairsalonsByProgram!: Array<any>;
 
   fwdMsgToSib2($event: any) {
     this.isHideMap = $event;
@@ -29,5 +31,13 @@ export class DashboardComponent {
 
   public searchedByNameTouched = ($event: any): void => {
     this.isSearchedByNameTouched = $event;
+  };
+
+  public searchedByLocationTouched = ($event: any): void => {
+    this.isSearchedByLocationTouched = $event;
+  };
+
+  public searchedHairsalonsByProgram = ($event: any): void => {
+    this.hairsalonsByProgram = $event;
   };
 }

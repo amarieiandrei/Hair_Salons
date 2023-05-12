@@ -58,6 +58,7 @@ export class SectionComponent {
 
   public wwwMenuOpen!: string;
 
+  public isSearchedByLocationTouched: boolean = false;
   public isSearchedByNameTouched: boolean = false;
 
   public disableSearchCalendar: boolean = false;
@@ -85,7 +86,8 @@ export class SectionComponent {
   @Output() searchedHairsalonsEvent = new EventEmitter<any>();
   @Output() searchedByNameTouchedEvent = new EventEmitter<any>();
   @Output() searchedHairsalonsByLocationEvent = new EventEmitter<any>();
-
+  @Output() searchedByLocationTouchedEvent = new EventEmitter<any>();
+  @Output() searchedHairsalonsByProgramEvent = new EventEmitter<any>();
   // * Emit to main for hide google-map
   @Output() msgToSibling = new EventEmitter<any>();
   private _isMap: boolean = true;
@@ -195,6 +197,10 @@ export class SectionComponent {
     });
 
     this.searchedHairsalonsByLocationEvent.emit(searchedHairsalonsByLocation);
+
+    this.isSearchedByLocationTouched = true;
+    this.searchedByLocationTouchedEvent.emit(this.isSearchedByLocationTouched);
+
     this.isSearchedByNameTouched = false;
     this.searchedByNameTouchedEvent.emit(this.isSearchedByNameTouched);
 
@@ -202,7 +208,23 @@ export class SectionComponent {
   };
 
   public onSearchingCalendar = (day: any, hours: any): void => {
-    console.log(day, hours);
+    const hairsalons = this._hairsalonsService.loadHairsalonsFromLocalStorage();
+
+    const searchedHairsalonsByProgram = hairsalons.filter((hairsalon) => {
+      return this._hairsalonsService.searchHairsalonsByProgram(
+        hairsalon.program,
+        day,
+        hours
+      );
+    });
+
+    this.isSearchedByNameTouched = false;
+    this.searchedByNameTouchedEvent.emit(this.isSearchedByNameTouched);
+
+    this.isSearchedByLocationTouched = false;
+    this.searchedByLocationTouchedEvent.emit(this.isSearchedByLocationTouched);
+
+    this.searchedHairsalonsByProgramEvent.emit(searchedHairsalonsByProgram);
   };
 
   public onFocusName = (): void => {
@@ -261,7 +283,9 @@ export class SectionComponent {
   };
 
   public onDoneProgram = (): void => {
-    const hours = moment(this.chooseProgramTime).format("hh:mm");
+    const hoursHour = this.chooseProgramTime.getHours();
+    const hoursMinutes = this.chooseProgramTime.getMinutes();
+    const hours = `${hoursHour}:${hoursMinutes}`;
 
     const formatedDatePickerValue = moment(this.datePickerValue).format("dddd");
 
