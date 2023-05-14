@@ -5,17 +5,21 @@ import { Component } from "@angular/core";
   templateUrl: "./google-map.component.html",
 })
 export class GoogleMapComponent {
-  display: any;
-  center: google.maps.LatLngLiteral = { lat: 24, lng: 12 };
-  zoom = 4;
+  // * Fields
+  public markerOptions: google.maps.MarkerOptions = { draggable: false };
+  public markerPositions: google.maps.LatLngLiteral[] = [];
+
+  public display: any;
+  public center: google.maps.LatLngLiteral = { lat: 45.5, lng: 25 };
+  public zoom: number = 7;
 
   constructor() {}
 
-  moveMap(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null) this.center = event.latLng.toJSON();
-  }
-
-  move(event: google.maps.MapMouseEvent) {
+  public move = (event: google.maps.MapMouseEvent) => {
     if (event.latLng != null) this.display = event.latLng.toJSON();
-  }
+  };
+
+  public addMarker = (event: google.maps.MapMouseEvent) => {
+    if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
+  };
 }
