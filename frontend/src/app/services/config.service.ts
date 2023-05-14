@@ -1,17 +1,13 @@
+import { environment } from "src/environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "../components/register/components/register/types/user.interface";
-import { map } from "rxjs";
+import { Observable, map } from "rxjs";
+
 @Injectable({
   providedIn: "root",
 })
 export class ConfigService {
-  // * Apis
-  private _usersUrl = "http://localhost:5000/api/users";
-  private _authUrl = "http://localhost:5000/api/auth";
-  private _profileUrl = "http://localhost:5000/api/profile";
-  private _hairsalonsUrl = "http://localhost:5000/api/hairsalons";
-
   // * Fields
   private _authToken!: any;
   private _user!: object | null;
@@ -24,7 +20,7 @@ export class ConfigService {
     });
 
     return this._http
-      .post(this._usersUrl, user, { headers: headers })
+      .post(`${environment.apiUrl}/api/users`, user, { headers: headers })
       .pipe(map((res) => res));
   };
 
@@ -34,11 +30,11 @@ export class ConfigService {
     });
 
     return this._http
-      .post(this._authUrl, user, { headers: headers })
+      .post(`${environment.apiUrl}/api/auth`, user, { headers: headers })
       .pipe(map((res) => res));
   };
 
-  public getProfile = (): any => {
+  public getProfile = (): Observable<any> => {
     this.loadToken();
 
     const headers = new HttpHeaders({
@@ -46,9 +42,9 @@ export class ConfigService {
     });
     headers.append("Content-Type", "charset=UTF-8");
 
-    return this._http
-      .get(this._profileUrl, { headers: headers })
-      .pipe(map((res) => res));
+    return this._http.get<any>(`${environment.apiUrl}/api/profile`, {
+      headers: headers,
+    });
   };
 
   public storeUserData = (token: string, user: object): void => {
@@ -76,7 +72,7 @@ export class ConfigService {
     });
 
     return this._http
-      .get(this._hairsalonsUrl, { headers: headers })
+      .get(`${environment.apiUrl}/api/hairsalons`, { headers: headers })
       .pipe(map((res) => res));
   };
 }
