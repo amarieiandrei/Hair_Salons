@@ -37,6 +37,11 @@ export class ConfigService {
   public getProfile = (): Observable<any> => {
     this.loadToken();
 
+    if (this._authToken === null) {
+      let observable = new Observable();
+      return observable;
+    }
+
     const headers = new HttpHeaders({
       "x-auth-token": this._authToken,
     });

@@ -4,8 +4,8 @@
   height="55vh"
   [center]="center"
   [zoom]="zoom"
-  (mapMousemove)="move($event)"
   (mapClick)="addMarker($event)"
+  (mapMousemove)="move($event)"
 >
   <map-marker
     *ngFor="let markerPosition of markerPositions"
