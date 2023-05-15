@@ -18,7 +18,7 @@ export const authGuard = (): Observable<boolean> => {
       router.navigate(["login"]);
       return false;
     }
-  }, 150);
+  }, 75);
 
   return configService.getProfile().pipe(
     map((profile) => {

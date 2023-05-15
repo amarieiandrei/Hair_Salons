@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ConfigService } from "src/app/services/config.service";
-import Swal from "sweetalert2";
 
 @Component({
   selector: "app-profile",
@@ -34,19 +33,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public onLogoutClicked = (): void => {
     this._configService.logout();
-
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: "You are Succesfully Logged out!",
-      showConfirmButton: false,
-      timer: 1125,
-    });
-
-    (() => {
-      setTimeout(() => {
-        this._router.navigate(["/login"]);
-      }, 1000);
-    })();
+    this._router.navigate(["/login"]);
   };
 }
