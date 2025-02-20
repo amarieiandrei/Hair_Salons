@@ -1,5 +1,4 @@
 # Hair_Salons
-Web Application <br/>
 
 # Area of skills: Angular, Typescript, HTML, CSS, Sass, NodeJS, ExpressJS, MongoDB, RxJS, Bootstrap, NGX-Bootstrap, JavaScript, Npm, Git.
 
